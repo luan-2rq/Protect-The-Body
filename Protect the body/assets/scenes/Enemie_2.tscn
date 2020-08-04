@@ -6,7 +6,9 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 13.2705
 
-[node name="Enemie 2" type="KinematicBody2D"]
+[node name="Enemie 2" type="KinematicBody2D" groups=[
+"body",
+]]
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
@@ -15,7 +17,9 @@ speed = 2.0
 Raio = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2( 5.96485, 5.96485 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 9.18444, 9.18444 )
 texture = ExtResource( 1 )

@@ -9,12 +9,12 @@ points = PoolVector2Array( 18, 20, 1, -20, -18, 20, 0, 15 )
 [node name="Pivot Point" type="Node2D"]
 scale = Vector2( 1.0026, 1.07677 )
 script = ExtResource( 2 )
-shoot_speed = 200
+shoot_speed = 400
 rotation_speed = 5
 
 [node name="Pointer" type="KinematicBody2D" parent="."]
 modulate = Color( 0.894118, 0.231373, 0.231373, 1 )
-position = Vector2( 0, -123 )
+position = Vector2( 0, -80 )
 
 [node name="Sprite" type="Sprite" parent="Pointer"]
 texture = ExtResource( 1 )

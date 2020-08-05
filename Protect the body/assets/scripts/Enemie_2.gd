@@ -55,4 +55,3 @@ func _physics_process(delta):
 	self.position.x += Raio*cos(t) + acel.x
 	self.position.y += Raio*sin(t) + acel.y
 	t = t + delta*speed
-	print(position)

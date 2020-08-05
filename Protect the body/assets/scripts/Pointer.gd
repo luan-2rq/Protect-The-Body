@@ -43,7 +43,8 @@ func _physics_process(delta):
 			current_body.add_child(self)
 			position =  Vector2(0, 0)
 			var local_hit_position = current_body.to_local($Pointer.get_node("RayCast2D").get_collision_point())
-			$Pointer.position = Vector2(0, -current_body.get_node("CollisionShape2D").shape.radius * current_body.scale.y) * 12.3
+			$Pointer.position = Vector2(0, -current_body.get_node("CollisionShape2D").shape.radius * current_body.scale.y)* 7
+			print($Pointer.position)
 			rotation = atan2(local_hit_position.y, local_hit_position.x) + PI/2
 			
 func shoot():
@@ -65,5 +66,5 @@ func respawn():
 	main_body.add_child(self)
 	current_body = main_body
 	position = Vector2(0, 0)
-	$Pointer.position = Vector2(0, -current_body.get_node("CollisionShape2D").shape.radius * current_body.scale.y) * 12.3
+	$Pointer.position = Vector2(0, -current_body.get_node("CollisionShape2D").shape.radius * current_body.scale.y) * 7
 	

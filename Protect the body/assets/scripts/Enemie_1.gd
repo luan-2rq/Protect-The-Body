@@ -48,8 +48,8 @@ func _ready():
 	self.position = pos
 	vetor = (self.position - resolution/2.0).normalized()
 	acel = vetor*(-speed)
-	print(acel)
+	
 	
 func _physics_process(delta):
-	self.position = self.position + acel
-	print(self.position)
+	move_and_slide(40 * acel)
+	#self.position = self.position + acel

@@ -34,7 +34,7 @@ shape = SubResource( 1 )
 wait_time = 7.0
 
 [node name="Pivot" parent="." instance=ExtResource( 7 )]
-position = Vector2( 286.99, 225.588 )
+position = Vector2( 337.714, 225.588 )
 rotation = -0.619592
 scale = Vector2( 2.5, 2.5 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -1,4 +1,4 @@
-extends Node2D
+extends KinematicBody2D
 
 export(float) var speed
 export(float) var Raio

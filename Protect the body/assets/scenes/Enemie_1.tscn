@@ -4,24 +4,23 @@
 [ext_resource path="res://assets/scripts/Enemie_1.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 35.7594
+radius = 16.1821
 
 [node name="enemy1" type="KinematicBody2D" groups=[
 "body",
 ]]
-position = Vector2( 13.773, 21.1893 )
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( 0.218816, 0.0306664 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 speed = 3.0
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 4.49221, 4.49221 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 3.17838, -12.7135 )
+position = Vector2( 1.37221, -6.239 )
 scale = Vector2( 2.50961, 2.50961 )
 shape = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}

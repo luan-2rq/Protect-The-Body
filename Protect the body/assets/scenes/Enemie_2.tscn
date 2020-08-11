@@ -4,23 +4,22 @@
 [ext_resource path="res://assets/scripts/Enemie_2.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 13.2705
+radius = 13.1184
 
 [node name="Enemie 2" type="KinematicBody2D" groups=[
 "body",
 ]]
+position = Vector2( 1.40381, 3.83552 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 speed = 2.0
 Raio = 1.0
 
 [node name="Sprite" type="Sprite" parent="."]
 rotation = 3.14159
-scale = Vector2( 4.98672, 4.98672 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1.50248, 6.47574 )
 scale = Vector2( 3.08485, 3.08485 )
 shape = SubResource( 1 )

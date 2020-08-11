@@ -26,8 +26,8 @@ func _ready():
 
 func _physics_process(delta):
 	get_input()
-	if current_body == main_body:
-		main_body.move_and_slide(main_body.position.direction_to(get_global_mouse_position()) * main_body_speed)
+	#if current_body == main_body and !move:
+		#main_body.move_and_slide(main_body.position.direction_to(get_global_mouse_position()) * main_body_speed)
 	if !move:
 		global_rotation = atan2(-(global_position.x - get_global_mouse_position().x), global_position.y - get_global_mouse_position().y)
 	if move:

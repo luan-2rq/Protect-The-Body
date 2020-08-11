@@ -8,6 +8,7 @@ radius = 8.16392
 
 [node name="KinematicBody2D" type="KinematicBody2D" groups=[
 "body",
+"enemy",
 ]]
 script = ExtResource( 1 )
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/scenes/Pointer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/organHeart.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/scenes/Pivot.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/scenes/Enemy_3.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/scenes/Enemy_1.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/sprites/bg-heart-heartless.jpg" type="Texture" id=10]
 [ext_resource path="res://assets/sprites/circleHeart.png" type="Texture" id=11]
 [ext_resource path="res://assets/scripts/Body.gd" type="Script" id=12]
 
@@ -69,6 +70,11 @@ enemy3_scene = ExtResource( 8 )
 enemy4_scene = ExtResource( 5 )
 enemy5_scene = ExtResource( 6 )
 pointer_scene = ExtResource( 1 )
+
+[node name="bg-heart-heartless" type="Sprite" parent="."]
+position = Vector2( 511.375, 357.659 )
+scale = Vector2( 2.83454, 2.83454 )
+texture = ExtResource( 10 )
 
 [node name="Body" type="KinematicBody2D" parent="." groups=[
 "body",

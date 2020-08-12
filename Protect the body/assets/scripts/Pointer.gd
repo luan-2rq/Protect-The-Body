@@ -15,7 +15,7 @@ func get_input():
 		rotation_direction = 0
 	if Input.is_action_just_released(('ui_left')):
 		rotation_direction = 0
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("ui_accept") && current_body != null && !move:
 		call_deferred("shoot")
 	if Input.is_action_pressed('shift'):
 		call_deferred("respawn")
@@ -41,12 +41,14 @@ func _physics_process(delta):
 			current_body.add_child(self)
 			position =  Vector2(0, 0)
 			var local_hit_position = current_body.to_local($Pointer.get_node("RayCast2D").get_collision_point())
-			$Pointer.position = Vector2(0, -current_body.get_node("CollisionShape2D").shape.radius * current_body.scale.y)* 8
+			$Pointer.position = Vector2(0, -current_body.get_node("CollisionShape2D").shape.radius * current_body.scale.y) * 1.8
 			rotation = atan2(local_hit_position.y, local_hit_position.x) + PI/2
 			
 func shoot():
 	var shoot_position = global_position
 	var shoot_rotation = global_rotation
+	if current_body != main_body:
+		current_body.queue_free()
 	raycast_enabled = true
 	current_body.remove_child(self)
 	main_body.get_node("/root").add_child(self)
@@ -61,5 +63,5 @@ func respawn():
 	main_body.add_child(self)
 	current_body = main_body
 	position = Vector2(0, 0)
-	$Pointer.position = Vector2(0, -current_body.get_node("CollisionShape2D").shape.radius * current_body.scale.y) * 8
+	$Pointer.position = Vector2(0, -current_body.get_node("CollisionShape2D").shape.radius * current_body.scale.y) * 1.8
 	

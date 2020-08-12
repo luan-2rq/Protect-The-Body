@@ -1,15 +1,15 @@
 extends Node2D
 
-export(PackedScene)var enemie1_scene
-export(PackedScene)var enemie2_scene
-export(PackedScene)var enemie3_scene
-export(PackedScene)var enemie5_scene
-export(PackedScene)var enemie6_scene
-var enemie1
-var enemie2
-var enemie3
-var enemie4
-var enemie5
+export(PackedScene)var enemy1_scene
+export(PackedScene)var enemy2_scene
+export(PackedScene)var enemy3_scene
+export(PackedScene)var enemy4_scene
+export(PackedScene)var enemy5_scene
+var enemy1
+var enemy2
+var enemy3
+var enemy4
+var enemy5
 
 export(PackedScene)var pointer_scene
 var pointer
@@ -18,21 +18,21 @@ func _ready():
 	$Timer.start()
 	pointer = pointer_scene.instance()
 	get_node("Body").add_child(pointer)
-	enemie1 = enemie2_scene.instance()
-	enemie2 = enemie2_scene.instance()
-	enemie3 = enemie2_scene.instance()
-	add_child(enemie1)
-	#add_child(enemie2)
-	add_child(enemie3)
+	enemy1 = enemy2_scene.instance()
+	enemy2 = enemy2_scene.instance()
+	enemy3 = enemy2_scene.instance()
+	add_child(enemy1)
+	add_child(enemy2)
+	add_child(enemy3)
 
 func _on_Timer_timeout():
-	enemie1 = enemie1_scene.instance()
-	enemie2 = enemie1_scene.instance()
-	enemie3 = enemie2_scene.instance()
-	enemie4 = enemie5_scene.instance()
-	enemie5 = enemie6_scene.instance()
-	#add_child(enemie1)
-	add_child(enemie2)
-	#add_child(enemie3)
-	add_child(enemie4)
-	#add_child(enemie5)
+	enemy1 = enemy1_scene.instance()
+	enemy2 = enemy1_scene.instance()
+	enemy3 = enemy2_scene.instance()
+	enemy4 = enemy4_scene.instance()
+	enemy5 = enemy5_scene.instance()
+	add_child(enemy1)
+	add_child(enemy2)
+	add_child(enemy3)
+	add_child(enemy4)
+	add_child(enemy5)

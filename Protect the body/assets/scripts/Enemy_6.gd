@@ -1,57 +1,72 @@
 extends KinematicBody2D
 
-const SPEED = 200
-const R = 3               # Raio da espiral
-
 export(float) var speed
-export(float) var Raio
+export(float) var Amp
+var vetor
+var acel = Vector2()
 var rng = RandomNumberGenerator.new()
 var resolution = OS.get_window_size()
+var side
 var plain
-
-### Variáveis para a movimentação
-var M = Transform2D()
-var theta
 var pos = Vector2()
-var mov = Vector2()
-
+var t = 0
+var M = Transform2D()
 func _ready():
+	
 	rng.seed = 300
 	rng.randomize()
-	
 	plain = rng.randi_range(1,4)
+	side = rng.randi_range(0,1)
 	match plain:
 		1:
-			pos.x = -20
-			pos.y = -20
+			if side == 0:
+				pos.x = rng.randf_range(0,resolution.x/2.0)
+				pos.y = -10
+			else:
+				pos.x = -10
+				pos.y = rng.randf_range(0,resolution.y/2.0)
 		2:
-			pos.x = resolution.x + 20
-			pos.y = -20
+			if side == 0:
+				pos.x = rng.randf_range(resolution.x/2.0,resolution.x)
+				pos.y = -10
+			else:
+				pos.x = resolution.x + 10.0
+				pos.y = rng.randf_range(resolution.y/2.0,resolution.y)
 		3:
-			pos.x = -20
-			pos.y = resolution.y + 20
+			if side == 0:
+				pos.x = rng.randf_range(0,resolution.x/2.0)
+				pos.y = resolution.y + 10
+			else:
+				pos.x = -10
+				pos.y = rng.randf_range(resolution.y/2.0,resolution.y)
 		4:
-			pos.x = resolution.x + 20
-			pos.y = resolution.y + 20
+			if side == 0:
+				pos.x = rng.randf_range(resolution.x/2.0,resolution.x)
+				pos.y = resolution.y + 10
+			else:
+				pos.x = resolution.x + 10
+				pos.y = rng.randf_range(resolution.y/2.0,resolution.y)
 	
-	theta = 0
+	
+	print(resolution)
 	self.position = pos
-	mov = Vector2((resolution.x / 2) - pos.x, (resolution.y / 2) - pos.y).normalized()
-	M.y.x = mov.x * SPEED
-	M.y.y = mov.y * SPEED
+	
+	vetor = (self.position - resolution/2.0).normalized()
+	acel = vetor*(-speed)
+	var ang = acel.angle()
+	print("tg = ",tan(ang))
+	M = Transform2D(Vector2(cos(ang),-sin(ang)),Vector2(sin(ang),cos(ang)),self.position)
+	print("pos = ",pos)
+	print("acel = ",acel)
+	print("ang = ",ang)
+	print("vetor = ",vetor)
 	
 func _physics_process(delta):
-	match plain:
-		1:
-			M.y.x -= 3000 * pow(delta, 2)
-		2:
-			M.y.y -= 2100 * pow(delta, 2)
-		3:
-			M.y.y += 2100 * pow(delta, 2)
-		4:
-			M.y.x += 3000 * pow(delta, 2)
-	
-	theta += 0.1
-	M.x.x = R*cos(theta) + M.y.x*delta
-	M.x.y = R*sin(theta) + M.y.y*delta 
-	self.position += M[0]
+	var parametric = f(t,Amp,10)
+	self.position.x = M[0].x * parametric.x + M[0].y * parametric.y + M[2].x
+	self.position.y = M[1].x * parametric.x + M[1].y * parametric.y + M[2].y
+	t+=delta*speed
+	print(position)
+
+func f(t,amp,period):
+	return Vector2(period*t,amp*4.0/period *(t-period/2.0 * floor(2.0*t/period + 0.5))*pow(-1,floor(2.0*t/period + 0.5)))

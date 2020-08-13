@@ -9,7 +9,7 @@ points = PoolVector2Array( 18, 20, 1, -20, -18, 20, 0, 15 )
 [node name="Root" type="Node2D"]
 scale = Vector2( 1.0026, 1.07677 )
 script = ExtResource( 2 )
-shoot_speed = 600
+shoot_speed = 800
 rotation_speed = 5
 
 [node name="Pointer" type="KinematicBody2D" parent="."]

@@ -3,7 +3,6 @@
 [ext_resource path="res://assets/sprites/Red_virus.png" type="Texture" id=1]
 [ext_resource path="res://assets/scripts/Enemy_2.gd" type="Script" id=2]
 
-
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.9091
 
@@ -13,8 +12,8 @@ radius = 32.9091
 ]]
 position = Vector2( 1.40381, 3.83552 )
 script = ExtResource( 2 )
-speed = 2.0
-Raio = 1.0
+speed = 0.5
+Raio = 2.0
 
 [node name="Sprite" type="Sprite" parent="."]
 rotation = 3.14159

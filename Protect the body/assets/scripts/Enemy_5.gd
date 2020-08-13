@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
-const K = 5                       # número de pétalas da rosácea
+const SPEED = 200
+const R = 3               # Raio da espiral
 
 export(float) var speed
 export(float) var Raio
@@ -8,12 +9,11 @@ var rng = RandomNumberGenerator.new()
 var resolution = OS.get_window_size()
 var plain
 
-### Variáveis usadas na movimentação do tipo rosácea
+### Variáveis para a movimentação
+var M = Transform2D()
+var theta
 var pos = Vector2()
-var amp = 120                     # amplitude da rosácea
-var theta = 0                     # ângulo da rosácea
-var t = 0                         # variável de interpolação
-var d = 2                         # distância entre o centro e a posição da rosácea mais próxima do centro
+var mov = Vector2()
 
 func _ready():
 	rng.seed = 300
@@ -22,33 +22,36 @@ func _ready():
 	plain = rng.randi_range(1,4)
 	match plain:
 		1:
-			pos.x = 0
-			pos.y = 0
-			theta = PI / 4
+			pos.x = -20
+			pos.y = -20
 		2:
-			pos.x = resolution.x
-			pos.y = 0
-			theta = 3*PI / 4
+			pos.x = resolution.x + 20
+			pos.y = -20
 		3:
-			pos.x = 0
-			pos.y = resolution.y
-			theta = 7*PI / 4
+			pos.x = -20
+			pos.y = resolution.y + 20
 		4:
-			pos.x = resolution.x
-			pos.y = resolution.y
-			theta = 5*PI / 4
+			pos.x = resolution.x + 20
+			pos.y = resolution.y + 20
 	
+	theta = 0
 	self.position = pos
-
+	mov = Vector2((resolution.x / 2) - pos.x, (resolution.y / 2) - pos.y).normalized()
+	M.y.x = mov.x * SPEED
+	M.y.y = mov.y * SPEED
+	
 func _physics_process(delta):
-	var CENTRO = Vector2(resolution.x / 2, resolution.y / 2)
-	var rose_function = Vector2(amp*(sin(K*theta)*cos(theta) + d*cos(theta)), (amp*(sin(K*theta)*sin(theta) + d*sin(theta))))
+	match plain:
+		1:
+			M.y.x -= 3000 * pow(delta, 2)
+		2:
+			M.y.y -= 2100 * pow(delta, 2)
+		3:
+			M.y.y += 2100 * pow(delta, 2)
+		4:
+			M.y.x += 3000 * pow(delta, 2)
 	
-	t += 0.01 * delta
-	theta += 0.3 * delta
-	
-	if amp >= 0:
-		amp -= 1 * delta
-	
-	self.position = self.position.linear_interpolate(Vector2(CENTRO.x - rose_function.x, CENTRO.y - rose_function.y), t)
-	
+	theta += 0.1
+	M.x.x = R*cos(theta) + M.y.x*delta
+	M.x.y = R*sin(theta) + M.y.y*delta 
+	self.position += M[0]

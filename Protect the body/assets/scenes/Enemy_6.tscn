@@ -6,7 +6,10 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 37.8596
 
-[node name="Enemy_6" type="KinematicBody2D"]
+[node name="Enemy_6" type="KinematicBody2D" groups=[
+"body",
+"enemy",
+]]
 script = ExtResource( 2 )
 speed = 3.0
 Amp = 100.0

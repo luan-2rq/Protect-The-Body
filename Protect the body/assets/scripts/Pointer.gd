@@ -17,12 +17,11 @@ func get_input():
 		rotation_direction = 0
 	if Input.is_action_just_pressed("ui_accept") && current_body != null && !move:
 		call_deferred("shoot")
-	if Input.is_action_pressed('shift'):
-		call_deferred("respawn")
 
 func _ready():
 	main_body = get_parent()
 	current_body = main_body
+	get_parent().get_parent().connect("respawn", self, "on_Stage_respawn")
 
 func _physics_process(delta):
 	get_input()
@@ -65,3 +64,5 @@ func respawn():
 	position = Vector2(0, 0)
 	$Pointer.position = Vector2(0, -current_body.get_node("CollisionShape2D").shape.radius * current_body.scale.y) * 1.8
 	
+func on_Stage_respawn():
+	call_deferred("respawn")

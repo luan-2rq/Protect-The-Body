@@ -14,6 +14,7 @@ var enemy5
 var enemy6
 export(PackedScene)var pointer_scene
 var pointer
+signal respawn
 
 func _ready():
 	$Timer.start()
@@ -39,4 +40,6 @@ func _on_Timer_timeout():
 	add_child(enemy5)
 	add_child(enemy6)
 
-
+func _on_Area2D_body_entered(body):
+	if body.is_in_group("pointer"):
+		emit_signal("respawn")

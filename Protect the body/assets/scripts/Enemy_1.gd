@@ -51,5 +51,5 @@ func _ready():
 	
 	
 func _physics_process(delta):
-	move_and_slide(40 * acel)
-	#self.position = self.position + acel
+	#move_and_slide(40 * acel)
+	self.position = self.position + acel

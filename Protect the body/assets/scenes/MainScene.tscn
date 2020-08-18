@@ -94,7 +94,7 @@ texture = ExtResource( 11 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Body"]
 scale = Vector2( 2, 2 )
 frames = SubResource( 11 )
-frame = 3
+frame = 8
 playing = true
 
 [node name="Area2D" type="Area2D" parent="Body"]
@@ -109,7 +109,6 @@ wait_time = 2.0
 [node name="Pivot" parent="." instance=ExtResource( 7 )]
 position = Vector2( 286.99, 225.588 )
 rotation = -0.619592
-scale = Vector2( 1.5, 1.5 )
 
 [node name="Area2D" type="Area2D" parent="."]
 

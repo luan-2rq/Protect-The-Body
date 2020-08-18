@@ -12,9 +12,7 @@ script = ExtResource( 2 )
 shoot_speed = 800
 rotation_speed = 5
 
-[node name="Pointer" type="KinematicBody2D" parent="." groups=[
-"pointer",
-]]
+[node name="Pointer" type="KinematicBody2D" parent="."]
 modulate = Color( 0.894118, 0.231373, 0.231373, 1 )
 position = Vector2( 0, -80 )
 
@@ -29,3 +27,5 @@ collide_with_areas = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pointer"]
 shape = SubResource( 1 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="Pointer"]

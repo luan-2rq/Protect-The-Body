@@ -61,12 +61,18 @@ func _ready():
 	print("ang = ",ang)
 	print("vetor = ",vetor)
 	
+	#Setting particle generator rotation
+	set_particle_generator_rotation(vetor.x, vetor.y)
+	
 func _physics_process(delta):
 	var parametric = Vector2(10.0*t,Raio*sin(t/2))
 	self.position.x = M[0].x * parametric.x + M[0].y * parametric.y + M[2].x
 	self.position.y = M[1].x * parametric.x + M[1].y * parametric.y + M[2].y
 	t+=delta*speed
 	print(position)
+	
+func set_particle_generator_rotation(direction_x, direction_y):
+	$CPUParticles2D.rotation = atan2(direction_y, direction_x) + 3 * PI/2
 
 
 

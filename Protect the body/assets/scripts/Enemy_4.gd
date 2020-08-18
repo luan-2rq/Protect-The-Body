@@ -52,3 +52,5 @@ func _physics_process(delta):
 	
 	self.position = self.position.linear_interpolate(Vector2(CENTRO.x - rose_function.x, CENTRO.y - rose_function.y), t)
 	
+func set_particle_generator_rotation(direction_x, direction_y):
+	$CPUParticles2D.rotation = atan2(direction_y, direction_x) + 3 * PI/2

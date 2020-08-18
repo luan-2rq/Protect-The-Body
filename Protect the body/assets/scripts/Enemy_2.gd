@@ -54,4 +54,11 @@ func _ready():
 func _physics_process(delta):
 	self.position.x += Raio*cos(t) + acel.x
 	self.position.y += Raio*sin(t) + acel.y
+	
+	#Setting particle generator rotation
+	set_particle_generator_rotation(Raio*cos(t), Raio*sin(t))
+	
 	t = t + delta*speed
+
+func set_particle_generator_rotation(direction_x, direction_y):
+	$CPUParticles2D.rotation = atan2(direction_y, direction_x) + PI/2

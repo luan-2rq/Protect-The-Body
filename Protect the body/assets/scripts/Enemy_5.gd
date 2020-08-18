@@ -51,7 +51,13 @@ func _physics_process(delta):
 		4:
 			M.y.x += 3000 * pow(delta, 2)
 	
+	#Setting particle generator rotation
+	set_particle_generator_rotation(M.y.x, M.y.y)
+	
 	theta += 0.1
 	M.x.x = R*cos(theta) + M.y.x*delta
 	M.x.y = R*sin(theta) + M.y.y*delta 
 	self.position += M[0]
+
+func set_particle_generator_rotation(direction_x, direction_y):
+	$CPUParticles2D.rotation = atan2(direction_y, direction_x) + 3 * PI/2

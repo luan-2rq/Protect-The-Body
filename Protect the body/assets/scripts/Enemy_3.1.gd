@@ -50,9 +50,12 @@ func _ready():
 	self.position = pos
 	vetor = (self.position - resolution/2.0).normalized()
 	acel = vetor*(-speed)
-
+	
 func _physics_process(delta):
 	var perp = Vector2(-acel.y,acel.x)
 	self.position.x += t*acel.x
 	self.position.y += Raio*sin(2.0*t)*acel.y
 	t+=delta
+
+func set_particle_generator_rotation(direction_x, direction_y):
+	$CPUParticles2D.rotation = atan2(direction_y, direction_x) + 3 * PI/2

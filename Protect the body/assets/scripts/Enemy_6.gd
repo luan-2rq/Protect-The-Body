@@ -67,6 +67,9 @@ func _physics_process(delta):
 	self.position.y = M[1].x * parametric.x + M[1].y * parametric.y + M[2].y
 	t+=delta*speed
 	print(position)
-
+	
 func f(t,amp,period):
 	return Vector2(period*t,amp*4.0/period *(t-period/2.0 * floor(2.0*t/period + 0.5))*pow(-1,floor(2.0*t/period + 0.5)))
+
+func set_particle_generator_rotation(direction_x, direction_y):
+	$CPUParticles2D.rotation = atan2(direction_y, direction_x) + 3 * PI/2

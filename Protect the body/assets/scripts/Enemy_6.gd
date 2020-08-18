@@ -11,6 +11,10 @@ var plain
 var pos = Vector2()
 var t = 0
 var M = Transform2D()
+
+##Particle generator variables
+var past_position
+
 func _ready():
 	
 	rng.seed = 300
@@ -66,10 +70,18 @@ func _physics_process(delta):
 	self.position.x = M[0].x * parametric.x + M[0].y * parametric.y + M[2].x
 	self.position.y = M[1].x * parametric.x + M[1].y * parametric.y + M[2].y
 	t+=delta*speed
-	print(position)
+	##Setting particle generator rotation
+	set_particle_generator_rotation(self.position, Vector2(M[0].x + M[0].y + M[2].x, M[1].x + M[1].y + M[2].y))
 	
 func f(t,amp,period):
 	return Vector2(period*t,amp*4.0/period *(t-period/2.0 * floor(2.0*t/period + 0.5))*pow(-1,floor(2.0*t/period + 0.5)))
 
-func set_particle_generator_rotation(direction_x, direction_y):
-	$CPUParticles2D.rotation = atan2(direction_y, direction_x) + 3 * PI/2
+func set_particle_generator_rotation(body_position, main_movement_direction = null):
+	var direction
+	if main_movement_direction != null:
+		$CPUParticles2D.rotation = atan2(main_movement_direction.y, main_movement_direction.x) + 3*PI/2
+	else:
+		if past_position != null:
+			direction = body_position - past_position
+			$CPUParticles2D.rotation = atan2(direction.y, direction.x) + PI/2
+		past_position = body_position

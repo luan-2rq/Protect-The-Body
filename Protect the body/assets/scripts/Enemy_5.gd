@@ -15,6 +15,9 @@ var theta
 var pos = Vector2()
 var mov = Vector2()
 
+### Particle generator variables
+var past_position
+
 func _ready():
 	rng.seed = 300
 	rng.randomize()
@@ -50,14 +53,19 @@ func _physics_process(delta):
 			M.y.y += 2100 * pow(delta, 2)
 		4:
 			M.y.x += 3000 * pow(delta, 2)
-	
-	#Setting particle generator rotation
-	set_particle_generator_rotation(M.y.x, M.y.y)
-	
 	theta += 0.1
 	M.x.x = R*cos(theta) + M.y.x*delta
 	M.x.y = R*sin(theta) + M.y.y*delta 
 	self.position += M[0]
+	#Setting particle generator rotation
+	set_particle_generator_rotation(self.position, M.y)
 
-func set_particle_generator_rotation(direction_x, direction_y):
-	$CPUParticles2D.rotation = atan2(direction_y, direction_x) + 3 * PI/2
+func set_particle_generator_rotation(body_position, main_movement_direction = null):
+	var direction
+	if main_movement_direction != null:
+		$CPUParticles2D.rotation = atan2(main_movement_direction.y, main_movement_direction.x) + PI/2
+	else:
+		if past_position != null:
+			direction = body_position - past_position
+			$CPUParticles2D.rotation = atan2(direction.y, direction.x) + PI/2
+		past_position = body_position

@@ -96,15 +96,7 @@ texture = ExtResource( 11 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Body"]
 scale = Vector2( 2, 2 )
 frames = SubResource( 11 )
-<<<<<<< HEAD
-<<<<<<< HEAD
-frame = 1
-=======
 frame = 4
->>>>>>> 73b14176b098ee7de8c6a67a179f68ffc7f43126
-=======
-frame = 3
->>>>>>> parent of 2a44a62... pulling
 playing = true
 
 [node name="Area2D" type="Area2D" parent="Body"]

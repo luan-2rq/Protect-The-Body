@@ -1,6 +1,10 @@
 extends KinematicBody2D
 
-export(float) var speed
+export (PackedScene) var sun_scene
+
+signal created_enemy(enemy)
+
+export (int) var speed
 var vetor
 var acel
 var rng = RandomNumberGenerator.new()
@@ -60,4 +64,12 @@ func set_particle_generator_rotation(direction_x, direction_y):
 	$CPUParticles2D.rotation = atan2(direction_y, direction_x) + 3 * PI/2
 
 func die():
-	queue_free()
+	$CollisionShape2D.queue_free()
+	self.visible = false
+	var sun1 = sun_scene.instance()
+	sun1.setup(self.position + 16*Vector2.ONE, 1)
+	emit_signal("created_enemy", sun1)
+	var sun2 = sun_scene.instance()
+	sun2.setup(self.position - 16*Vector2.ONE, -1)
+	emit_signal("created_enemy", sun2)
+	self.queue_free()

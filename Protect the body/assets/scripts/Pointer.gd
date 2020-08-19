@@ -49,7 +49,7 @@ func shoot():
 	var shoot_position = global_position
 	var shoot_rotation = global_rotation
 	if current_body != main_body && !current_body.is_in_group("pivot"):
-		current_body.queue_free()
+		current_body.die()
 	raycast_enabled = true
 	current_body.remove_child(self)
 	main_body.get_node("/root").add_child(self)

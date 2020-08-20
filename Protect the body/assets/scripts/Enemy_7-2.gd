@@ -28,7 +28,6 @@ func setup(pos, coord):
 	side = rng.randi_range(0, 2)
 	self.position = pos
 	y = coord
-	print(side)
 	if side == 1:
 		vetor = Vector2(1, y)
 	else:
@@ -36,3 +35,4 @@ func setup(pos, coord):
 
 func die():
 	queue_free()
+

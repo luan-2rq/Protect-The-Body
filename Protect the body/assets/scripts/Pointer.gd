@@ -30,7 +30,7 @@ func _physics_process(delta):
 	if !is_moving:
 		global_rotation = atan2(-(global_position.x - get_global_mouse_position().x), global_position.y - get_global_mouse_position().y)
 	if is_moving:
-		$Pointer.move_and_slide(Vector2(0, -shoot_speed).rotated(self.global_rotation))
+		$Pointer.move_and_slide(Vector2(0, -shoot_speed * Global.velocity_modifier).rotated(self.global_rotation))
 	if $Pointer.get_node("RayCast2D").is_colliding() && raycast_enabled:
 		if $Pointer.get_node("RayCast2D").get_collider().is_in_group("body"):
 			is_moving = false
@@ -42,6 +42,8 @@ func _physics_process(delta):
 			var local_hit_position = current_body.to_local($Pointer.get_node("RayCast2D").get_collision_point())
 			$Pointer.position = Vector2(0, -current_body.get_node("CollisionShape2D").shape.radius * current_body.scale.y) * 1.8
 			rotation = atan2(local_hit_position.y, local_hit_position.x) + PI/2
+		if $Pointer.get_node("RayCast2D").get_collider().is_in_group("powerup"):
+			$Pointer.get_node("RayCast2D").get_collider().collected()
 	if !$Pointer/VisibilityNotifier2D.is_on_screen() && is_moving:
 		respawn()
 			

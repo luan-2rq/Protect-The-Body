@@ -19,6 +19,10 @@ config/name="Protect the body"
 run/main_scene="res://assets/scenes/MainScene.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://assets/scripts/Global.gd"
+
 [display]
 
 window/size/height=720

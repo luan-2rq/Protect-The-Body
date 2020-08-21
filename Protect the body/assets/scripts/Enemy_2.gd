@@ -3,6 +3,7 @@ extends KinematicBody2D
 var t = 0
 export(float) var speed
 export(float) var Raio
+export(AudioStream) var die_sfx
 var vetor
 var acel
 var rng = RandomNumberGenerator.new()
@@ -15,6 +16,8 @@ var pos = Vector2()
 var past_position
 
 func _ready():
+	$AudioStreamPlayer2D.stream = die_sfx
+	
 	rng.seed = 300
 	rng.randomize()
 	
@@ -72,4 +75,7 @@ func set_particle_generator_rotation(body_position, main_movement_direction = nu
 		past_position = body_position
 
 func die():
+	$AudioStreamPlayer2D.playing = true
+
+func _on_AudioStreamPlayer2D_finished():
 	queue_free()

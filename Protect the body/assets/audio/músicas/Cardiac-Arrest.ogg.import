@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Cardiac-Arrest.ogg-379a14f2fa05db66c26dfffe5caa6fab.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/músicas/Cardiac-Arrest.ogg"
+dest_files=[ "res://.import/Cardiac-Arrest.ogg-379a14f2fa05db66c26dfffe5caa6fab.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

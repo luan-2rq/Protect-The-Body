@@ -58,6 +58,7 @@ func shoot():
 	global_position = shoot_position
 	global_rotation = shoot_rotation
 	is_moving = true
+	$Pointer/Jump_Effect.playing = true
 	
 func respawn():
 	raycast_enabled = false

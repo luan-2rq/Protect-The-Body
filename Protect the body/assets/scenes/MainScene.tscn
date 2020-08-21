@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://assets/scenes/pointer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/organHeart.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/scenes/Enemy_4.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/scenes/Enemy_7.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/scenes/Pivot.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/audio/músicas/Cardiac-Arrest.ogg" type="AudioStream" id=8]
 [ext_resource path="res://assets/scenes/Enemy_1.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/sprites/bg-heart-heartless.jpg" type="Texture" id=10]
 [ext_resource path="res://assets/sprites/circleHeart.png" type="Texture" id=11]
@@ -96,6 +97,7 @@ texture = ExtResource( 11 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Body"]
 scale = Vector2( 2, 2 )
 frames = SubResource( 11 )
+frame = 8
 playing = true
 
 [node name="Area2D" type="Area2D" parent="Body"]
@@ -128,6 +130,10 @@ shape = SubResource( 14 )
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 512, 728 )
 shape = SubResource( 14 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+autoplay = true
 [connection signal="body_entered" from="Body/Area2D" to="Body" method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+export(AudioStream) var die_sfx
 export (int) var speed
 onready var vetor
 var acel
@@ -10,6 +11,8 @@ var y
 onready var pos = Vector2.ZERO
 
 func _ready():
+	$AudioStreamPlayer2D.stream = die_sfx
+	
 	acel = vetor*(-speed)
 	
 	#setting particle generator rotation
@@ -34,5 +37,7 @@ func setup(pos, coord):
 		vetor = Vector2(-1, y)
 
 func die():
-	queue_free()
+	$AudioStreamPlayer2D.playing = true
 
+func _on_AudioStreamPlayer2D_finished():
+	queue_free()

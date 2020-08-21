@@ -4,6 +4,7 @@ const K = 5                       # número de pétalas da rosácea
 
 export(float) var speed
 export(float) var Raio
+export(AudioStream) var die_sfx
 var rng = RandomNumberGenerator.new()
 var resolution = OS.get_window_size()
 var plain
@@ -19,6 +20,8 @@ var d = 2                         # distância entre o centro e a posição da r
 var past_position
 
 func _ready():
+	$AudioStreamPlayer2D.stream = die_sfx
+	
 	rng.seed = 300
 	rng.randomize()
 	
@@ -65,4 +68,7 @@ func set_particle_generator_rotation(body_position, main_movement_direction = nu
 		past_position = body_position
 
 func die():
+	$AudioStreamPlayer2D.playing = true
+
+func _on_AudioStreamPlayer2D_finished():
 	queue_free()

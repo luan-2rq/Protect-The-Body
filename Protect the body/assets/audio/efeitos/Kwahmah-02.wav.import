@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Kwahmah-02.wav-dd15d6e680ede435e17a960d69ba7018.sample"
+
+[deps]
+
+source_file="res://assets/audio/efeitos/Kwahmah-02.wav"
+dest_files=[ "res://.import/Kwahmah-02.wav-dd15d6e680ede435e17a960d69ba7018.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

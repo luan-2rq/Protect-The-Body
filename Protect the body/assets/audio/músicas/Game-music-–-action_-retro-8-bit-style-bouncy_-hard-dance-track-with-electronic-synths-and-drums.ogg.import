@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Game-music-–-action_-retro-8-bit-style-bouncy_-hard-dance-track-with-electronic-synths-and-drums.ogg-af57848a2a51d4b78c31c16dfe464621.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/músicas/Game-music-–-action_-retro-8-bit-style-bouncy_-hard-dance-track-with-electronic-synths-and-drums.ogg"
+dest_files=[ "res://.import/Game-music-–-action_-retro-8-bit-style-bouncy_-hard-dance-track-with-electronic-synths-and-drums.ogg-af57848a2a51d4b78c31c16dfe464621.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

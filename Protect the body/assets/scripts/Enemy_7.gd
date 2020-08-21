@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 export (PackedScene) var sun_scene
+export(AudioStream) var die_sfx
 
 signal created_enemy(enemy)
 
@@ -14,6 +15,8 @@ var plain
 var pos = Vector2()
 
 func _ready():
+	$AudioStreamPlayer2D.stream = die_sfx
+	
 	rng.seed = 300
 	rng.randomize()
 	
@@ -64,6 +67,9 @@ func set_particle_generator_rotation(direction_x, direction_y):
 	$CPUParticles2D.rotation = atan2(direction_y, direction_x) + 3 * PI/2
 
 func die():
+	$AudioStreamPlayer2D.playing = true
+
+func _on_AudioStreamPlayer2D_finished():
 	$CollisionShape2D.queue_free()
 	self.visible = false
 	var sun1 = sun_scene.instance()

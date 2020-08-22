@@ -4,8 +4,8 @@
 [ext_resource path="res://assets/scripts/Pointer.gd" type="Script" id=2]
 [ext_resource path="res://assets/audio/efeitos/Kwahmah-02.wav" type="AudioStream" id=3]
 
-[sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( 18, 20, 1, -20, -18, 20, 0, 15 )
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 23.6624, 42.5097 )
 
 [node name="Root" type="Node2D"]
 scale = Vector2( 1.0026, 1.07677 )
@@ -19,15 +19,17 @@ position = Vector2( 0, -80 )
 scale = Vector2( 0.7, 0.7 )
 
 [node name="Sprite" type="Sprite" parent="Pointer"]
+position = Vector2( -7.08242, 1.79852 )
 texture = ExtResource( 1 )
 
 [node name="RayCast2D" type="RayCast2D" parent="Pointer"]
 scale = Vector2( 1.00364, 1.25642 )
 enabled = true
-cast_to = Vector2( 0, -25 )
+cast_to = Vector2( 0, 60 )
 collide_with_areas = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pointer"]
+position = Vector2( -0.64386, -0.648135 )
 shape = SubResource( 1 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="Pointer"]

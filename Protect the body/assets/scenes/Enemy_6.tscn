@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/scripts/Enemy_6.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 37.8596
+radius = 31.9369
 
 [node name="Enemy_6" type="KinematicBody2D" groups=[
 "body",

@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/audio/efeitos/Large-Cork-Pop.ogg" type="AudioStream" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 32.9104
+radius = 31.4849
 
 [node name="enemy1" type="KinematicBody2D" groups=[
 "body",
@@ -31,7 +31,7 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1.37221, -6.239 )
+position = Vector2( 2.07151, -6.239 )
 shape = SubResource( 1 )
 __meta__ = {
 "_edit_group_": true

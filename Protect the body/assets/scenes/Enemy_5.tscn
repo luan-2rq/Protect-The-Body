@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/sprites/Pink_virus.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 32.4858
+radius = 31.8603
 
 [node name="KinematicBody2D" type="KinematicBody2D" groups=[
 "body",
@@ -21,10 +21,10 @@ spread = 90.0
 initial_velocity = 50.0
 scale_amount = 7.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1.41419, -6.0104 )
-shape = SubResource( 1 )
-
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 2.07853, -6.0104 )
+shape = SubResource( 1 )

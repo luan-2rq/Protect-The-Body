@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/scenes/pointer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/organHeart.png" type="Texture" id=2]
@@ -12,9 +12,6 @@
 [ext_resource path="res://assets/sprites/bg-heart-heartless.jpg" type="Texture" id=10]
 [ext_resource path="res://assets/sprites/circleHeart.png" type="Texture" id=11]
 [ext_resource path="res://assets/scripts/Body.gd" type="Script" id=12]
-
-[sub_resource type="CircleShape2D" id=1]
-radius = 52.2463
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )
@@ -60,13 +57,11 @@ animations = [ {
 "speed": 10.0
 } ]
 
+[sub_resource type="CircleShape2D" id=13]
+radius = 49.4262
+
 [sub_resource type="CircleShape2D" id=12]
-
-[sub_resource type="RectangleShape2D" id=13]
-extents = Vector2( 16, 368 )
-
-[sub_resource type="RectangleShape2D" id=14]
-extents = Vector2( 536, 10 )
+radius = 9.49043
 
 [node name="Stage" type="Node2D"]
 script = ExtResource( 4 )
@@ -87,9 +82,6 @@ texture = ExtResource( 10 )
 position = Vector2( 514.358, 362.127 )
 script = ExtResource( 12 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
-shape = SubResource( 1 )
-
 [node name="Circle" type="Sprite" parent="Body"]
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 11 )
@@ -97,8 +89,11 @@ texture = ExtResource( 11 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Body"]
 scale = Vector2( 2, 2 )
 frames = SubResource( 11 )
-frame = 8
+frame = 7
 playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+shape = SubResource( 13 )
 
 [node name="Area2D" type="Area2D" parent="Body"]
 
@@ -113,27 +108,8 @@ wait_time = 2.0
 position = Vector2( 286.99, 225.588 )
 rotation = -0.619592
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( -16, 360 )
-shape = SubResource( 13 )
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 1048, 360 )
-shape = SubResource( 13 )
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 512, -16 )
-shape = SubResource( 14 )
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 512, 728 )
-shape = SubResource( 14 )
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 8 )
 autoplay = true
 [connection signal="body_entered" from="Body/Area2D" to="Body" method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

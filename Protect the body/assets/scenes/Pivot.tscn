@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/scripts/Pivot.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 38.5638
+radius = 38.8603
 
 [sub_resource type="Curve2D" id=2]
 _data = {
@@ -42,7 +42,7 @@ scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
-position = Vector2( 0.905613, 1.4728 )
+position = Vector2( 1.91227, 2.17073 )
 rotation = 1.5708
 shape = SubResource( 1 )
 

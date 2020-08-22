@@ -22,9 +22,9 @@ initial_velocity = 50.0
 scale_amount = 7.0
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -1.66084, 5.97902 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 2.07853, -6.0104 )
 shape = SubResource( 1 )

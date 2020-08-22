@@ -19,9 +19,7 @@ func get_input():
 		rotation_direction = 0
 	if Input.is_action_just_released(('ui_left')):
 		rotation_direction = 0
-	if Input.is_action_just_pressed("ui_accept") && current_body != null && !is_moving:
-		call_deferred("shoot")
-
+		
 func _ready():
 	main_body = get_parent()
 	current_body = main_body
@@ -29,6 +27,10 @@ func _ready():
 	raycast = pointer.get_node("RayCast2D")
 	#get_parent().get_parent().connect("respawn", self, "on_Stage_respawn")
 
+func _input(event):
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT && current_body != null && !is_moving:
+		call_deferred("shoot")
+		
 func _physics_process(delta):
 	get_input()
 	
@@ -88,6 +90,6 @@ func spawn_on_body():
 	current_body.add_child(self)
 	position =  Vector2(0, 0)
 	var local_hit_position = current_body.to_local(raycast.get_collision_point())
-	pointer.position = Vector2(0, -local_hit_position.length() - 28)
+	pointer.position = Vector2(0, -local_hit_position.length() - 29)
 	rotation = atan2(local_hit_position.y, local_hit_position.x) + PI/2
 

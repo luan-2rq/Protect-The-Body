@@ -24,6 +24,7 @@ initial_velocity = 50.0
 scale_amount = 7.0
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -1.99301, 6.64335 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 
@@ -32,6 +33,5 @@ volume_db = -5.0
 attenuation = 0.594604
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1.90786, -6.17697 )
 shape = SubResource( 1 )
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_AudioStreamPlayer2D_finished"]

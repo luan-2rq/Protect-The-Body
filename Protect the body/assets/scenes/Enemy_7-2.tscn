@@ -24,11 +24,10 @@ initial_velocity = 50.0
 scale_amount = 4.0
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, 2 )
+position = Vector2( -1.04674, 2.83739 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1.04674, -1.04674 )
 shape = SubResource( 1 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

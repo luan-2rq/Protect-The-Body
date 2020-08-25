@@ -28,7 +28,7 @@ func _ready():
 	#get_parent().get_parent().connect("respawn", self, "on_Stage_respawn")
 
 func _input(event):
-	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT && current_body != null && !is_moving:
+	if event.is_action_pressed("pointer_shoot") && current_body != null && !is_moving:
 		call_deferred("shoot")
 		
 func _physics_process(delta):

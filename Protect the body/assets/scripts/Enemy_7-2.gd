@@ -40,4 +40,4 @@ func die():
 	$AudioStreamPlayer2D.playing = true
 
 func _on_AudioStreamPlayer2D_finished():
-	queue_free()
+	call_deferred("free")

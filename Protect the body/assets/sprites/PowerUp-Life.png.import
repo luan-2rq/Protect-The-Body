@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/PowerUp-Speed.png-1cec3cc782990898e275cb11b8cc0b6c.stex"
+path="res://.import/PowerUp-Life.png-c348b9ae6f0d23976ad38131f2f838d6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/PowerUp-Speed.png"
-dest_files=[ "res://.import/PowerUp-Speed.png-1cec3cc782990898e275cb11b8cc0b6c.stex" ]
+source_file="res://assets/sprites/PowerUp-Life.png"
+dest_files=[ "res://.import/PowerUp-Life.png-c348b9ae6f0d23976ad38131f2f838d6.stex" ]
 
 [params]
 

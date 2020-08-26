@@ -78,4 +78,4 @@ func _on_AudioStreamPlayer2D_finished():
 	var sun2 = sun_scene.instance()
 	sun2.setup(self.position - 16*Vector2.ONE, -1)
 	emit_signal("created_enemy", sun2)
-	self.queue_free()
+	call_deferred("free")

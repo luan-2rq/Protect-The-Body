@@ -1,5 +1,7 @@
 extends PowerUp
 
+signal clean
+
 func collected():
-	Global.velocity_modifier += 0.25
+	emit_signal("clean")
 	call_deferred("free")

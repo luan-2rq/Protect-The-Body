@@ -19,7 +19,7 @@ func get_input():
 		rotation_direction = 0
 	if Input.is_action_just_released(('ui_left')):
 		rotation_direction = 0
-		
+
 func _ready():
 	main_body = get_parent()
 	current_body = main_body
@@ -48,7 +48,7 @@ func _physics_process(delta):
 	
 	if !$Pointer/VisibilityNotifier2D.is_on_screen() && is_moving:
 		respawn()
-			
+
 func shoot():
 	var shoot_position = global_position
 	var shoot_rotation = global_rotation
@@ -93,3 +93,5 @@ func spawn_on_body():
 	pointer.position = Vector2(0, -local_hit_position.length() - 29)
 	rotation = atan2(local_hit_position.y, local_hit_position.x) + PI/2
 
+func on_Global_clean():
+	respawn()

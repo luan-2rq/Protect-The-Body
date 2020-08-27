@@ -16,6 +16,7 @@ var theta = 0                     # ângulo da rosácea
 var t = 0                         # variável de interpolação
 var d = 2                         # distância entre o centro e a posição da rosácea mais próxima do centro
 
+signal die
 ##Particle generator variables
 var past_position
 
@@ -69,6 +70,8 @@ func set_particle_generator_rotation(body_position, main_movement_direction = nu
 
 func die():
 	$AudioStreamPlayer2D.playing = true
+	get_parent().get_node("Control").points += 100
+	emit_signal("die")
 
 func _on_AudioStreamPlayer2D_finished():
 	queue_free()

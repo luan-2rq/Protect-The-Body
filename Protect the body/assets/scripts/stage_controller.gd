@@ -30,6 +30,7 @@ func _on_Enemy_spawning_timeout():
 			enemy_scene = enemy2_scene.instance()
 		3:
 			enemy_scene = enemy4_scene.instance()
+	enemy_scene.connect("die", $Control, "on_Enemy_die")
 	add_child(enemy_scene)
 
 func on_Enemy_7_created_enemy(sun):
@@ -40,6 +41,7 @@ func _on_PowerUp_spawning_timeout():
 	match powerup:
 		1:
 			powerup_scene = powerup1_scene.instance()
+			powerup_scene.connect("speedup", self, "on_PowerUp_speedup")
 		2:
 			powerup_scene = powerup2_scene.instance()
 			powerup_scene.connect("clean", self, "on_PowerUp_clean")
@@ -49,7 +51,16 @@ func _on_PowerUp_spawning_timeout():
 	add_child(powerup_scene)
 
 func on_PowerUp_clean():
-	get_node("Body").clean()
+	$Body.clean()
+	$Control/PowerUp.text = "CLEAN UP"
+	$Control/AnimationPlayer.play("show_powerup")
 
 func on_PowerUp_restore():
-	get_node("Body").lifes = get_node("Body").max_lifes
+	$Body.lifes = $Body.max_lifes
+	$Control/PowerUp.text = "RESTORE"
+	$Control/AnimationPlayer.play("show_powerup")
+
+func on_PowerUp_speedup():
+	Global.velocity_modifier += 0.25
+	$Control/PowerUp.text = "SPEED UP"
+	$Control/AnimationPlayer.play("show_powerup")

@@ -10,6 +10,7 @@ var resolution = OS.get_window_size()
 var side
 var plain
 var pos = Vector2()
+signal die
 
 func _ready():
 	$AudioStreamPlayer2D.stream = die_sfx
@@ -65,6 +66,8 @@ func set_particle_generator_rotation(direction_x, direction_y):
 
 func die():
 	$AudioStreamPlayer2D.playing = true
+	get_parent().get_node("Control").points += 100
+	emit_signal("die")
 
 func _on_AudioStreamPlayer2D_finished():
 	queue_free()

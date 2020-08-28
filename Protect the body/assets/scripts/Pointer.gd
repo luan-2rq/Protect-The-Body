@@ -95,3 +95,6 @@ func spawn_on_body():
 
 func on_Global_clean():
 	respawn()
+
+func die():
+	print("Dead")

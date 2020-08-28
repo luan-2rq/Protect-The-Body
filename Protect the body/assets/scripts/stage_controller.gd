@@ -11,6 +11,7 @@ var powerup_scene
 
 export(PackedScene)var pointer_scene
 var pointer
+var hp
 var rng = RandomNumberGenerator.new()
 var enemy
 var powerup
@@ -19,6 +20,8 @@ func _ready():
 	$Enemy_spawning.start()
 	$PowerUp_spawning.start()
 	pointer = pointer_scene.instance()
+	$HP_Box._setup($Body)
+	$HP_Box.connect("dead", self, "_on_pointer_death")
 	get_node("Body").add_child(pointer)
 
 func _on_Enemy_spawning_timeout():
@@ -64,3 +67,7 @@ func on_PowerUp_speedup():
 	Global.velocity_modifier += 0.25
 	$Control/PowerUp.text = "SPEED UP"
 	$Control/AnimationPlayer.play("show_powerup")
+
+func _on_pointer_death():
+	print("Dead")
+	get_tree().paused = true

@@ -70,7 +70,7 @@ func set_particle_generator_rotation(body_position, main_movement_direction = nu
 
 func die():
 	$AudioStreamPlayer2D.playing = true
-	get_parent().get_node("Control").points += 100
+	#get_parent().get_node("Control").points += 100
 	emit_signal("die")
 
 func _on_AudioStreamPlayer2D_finished():

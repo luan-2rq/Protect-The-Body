@@ -1,7 +1,8 @@
-extends Control
+extends VBoxContainer
 
 onready var points : int = 0
 
-func on_Enemy_die():
-	$Points.text = String(points)
+func _update_points(value : int):
+	points += value
+	$Label.text = str(points)
 

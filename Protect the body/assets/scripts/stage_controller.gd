@@ -6,6 +6,9 @@ export(PackedScene)var enemy4_scene
 export(PackedScene)var powerup1_scene
 export(PackedScene)var powerup2_scene
 export(PackedScene)var powerup3_scene
+export(PackedScene)var hp_scene
+export(PackedScene)var points_scene
+export(PackedScene)var poweruptext_scene
 var enemy_scene
 var powerup_scene
 
@@ -17,12 +20,29 @@ var enemy
 var powerup
 
 func _ready():
+	var hp_box = hp_scene.instance()
+	var points_box = points_scene.instance()
+	var powerup_text = poweruptext_scene.instance()
+	
+	points_box.set_name("Points_Box")
+	points_box.rect_position.y = 128
+	
+	powerup_text.set_name("PowerUp_Text")
+	powerup_text.rect_position.y = 192
+	
 	$Enemy_spawning.start()
 	$PowerUp_spawning.start()
+	
+	hp_box._setup($Body)
+	hp_box.rect_position = Vector2(17, 17)
+	hp_box.connect("dead", self, "_on_pointer_death")
+	
 	pointer = pointer_scene.instance()
-	$HP_Box._setup($Body)
-	$HP_Box.connect("dead", self, "_on_pointer_death")
 	get_node("Body").add_child(pointer)
+	
+	self.add_child(hp_box)
+	self.add_child(points_box)
+	self.add_child(powerup_text)
 
 func _on_Enemy_spawning_timeout():
 	enemy = rng.randi_range(1,3)
@@ -33,7 +53,7 @@ func _on_Enemy_spawning_timeout():
 			enemy_scene = enemy2_scene.instance()
 		3:
 			enemy_scene = enemy4_scene.instance()
-	enemy_scene.connect("die", $Control, "on_Enemy_die")
+	enemy_scene.connect("die", self, "on_Enemy_die")
 	add_child(enemy_scene)
 
 func on_Enemy_7_created_enemy(sun):
@@ -55,18 +75,21 @@ func _on_PowerUp_spawning_timeout():
 
 func on_PowerUp_clean():
 	$Body.clean()
-	$Control/PowerUp.text = "CLEAN UP"
-	$Control/AnimationPlayer.play("show_powerup")
+	$PowerUp_Text/Label.text = "CLEAN UP"
+	$PowerUp_Text/AnimationPlayer.play("show_powerup")
 
 func on_PowerUp_restore():
 	$Body.lifes = $Body.max_lifes
-	$Control/PowerUp.text = "RESTORE"
-	$Control/AnimationPlayer.play("show_powerup")
+	$PowerUp_Text/Label.text = "RESTORE"
+	$PowerUp_Text/AnimationPlayer.play("show_powerup")
 
 func on_PowerUp_speedup():
 	Global.velocity_modifier += 0.25
-	$Control/PowerUp.text = "SPEED UP"
-	$Control/AnimationPlayer.play("show_powerup")
+	$PowerUp_Text/Label.text = "SPEED UP"
+	$PowerUp_Text/AnimationPlayer.play("show_powerup")
+
+func on_Enemy_die():
+	$Points_Box._update_points(100)
 
 func _on_pointer_death():
 	print("Dead")

@@ -67,6 +67,9 @@ func set_particle_generator_rotation(direction_x, direction_y):
 func die():
 	$AudioStreamPlayer2D.playing = true
 	#get_parent().get_node("Control").points += 100
+	var s = preload("res://assets/HUD/Points/Point animation.tscn").instance()
+	add_child(s)
+	s.get_node("AnimationPlayer").play("IDLE")
 	emit_signal("die")
 
 func _on_AudioStreamPlayer2D_finished():

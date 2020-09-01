@@ -18,54 +18,54 @@
 [ext_resource path="res://assets/HUD/Life/Life.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/HUD/PowerUp_Text/PowerUpText.tscn" type="PackedScene" id=19]
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )
 region = Rect2( 32, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 2 )
 region = Rect2( 64, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 2 )
 region = Rect2( 96, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 2 )
 region = Rect2( 128, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 2 )
 region = Rect2( 160, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 2 )
 region = Rect2( 192, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 2 )
 region = Rect2( 224, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 2 )
 region = Rect2( 256, 0, 32, 32 )
 
-[sub_resource type="SpriteFrames" id=12]
+[sub_resource type="SpriteFrames" id=10]
 animations = [ {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
 "loop": true,
 "name": "default",
 "speed": 10.0
 } ]
 
-[sub_resource type="CircleShape2D" id=13]
+[sub_resource type="CircleShape2D" id=11]
 radius = 49.4262
 
-[sub_resource type="CircleShape2D" id=14]
+[sub_resource type="CircleShape2D" id=12]
 radius = 9.49043
 
 [node name="Stage" type="Node2D"]
@@ -98,18 +98,18 @@ texture = ExtResource( 11 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Body"]
 scale = Vector2( 2, 2 )
-frames = SubResource( 12 )
-frame = 4
+frames = SubResource( 10 )
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
-shape = SubResource( 13 )
+shape = SubResource( 11 )
 
 [node name="Area2D" type="Area2D" parent="Body"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Area2D"]
 scale = Vector2( 5.1, 5.1 )
-shape = SubResource( 14 )
+shape = SubResource( 12 )
 
 [node name="Enemy_spawning" type="Timer" parent="."]
 wait_time = 2.0

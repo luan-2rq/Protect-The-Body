@@ -6,6 +6,7 @@ export(PackedScene)var enemy4_scene
 export(PackedScene)var powerup1_scene
 export(PackedScene)var powerup2_scene
 export(PackedScene)var powerup3_scene
+export(PackedScene)var powerup4_scene
 export(PackedScene)var hp_scene
 export(PackedScene)var points_scene
 export(PackedScene)var poweruptext_scene
@@ -60,7 +61,8 @@ func on_Enemy_7_created_enemy(sun):
 	add_child(sun)
 
 func _on_PowerUp_spawning_timeout():
-	powerup = rng.randi_range(1, 3)
+	#powerup = rng.randi_range(1, 4)
+	powerup = 4
 	match powerup:
 		1:
 			powerup_scene = powerup1_scene.instance()
@@ -71,6 +73,9 @@ func _on_PowerUp_spawning_timeout():
 		3:
 			powerup_scene = powerup3_scene.instance()
 			powerup_scene.connect("restore", self, "on_PowerUp_restore")
+		4:
+			powerup_scene = powerup4_scene.instance()
+			powerup_scene.connect("shield", self, "on_PowerUp_shield")
 	add_child(powerup_scene)
 
 func on_PowerUp_clean():
@@ -86,6 +91,17 @@ func on_PowerUp_restore():
 func on_PowerUp_speedup():
 	Global.velocity_modifier += 0.25
 	$PowerUp_Text/Label.text = "SPEED UP"
+	$PowerUp_Text/AnimationPlayer.play("show_powerup")
+
+func on_PowerUp_shield(shield_scene : PackedScene):
+	if $Shield != null:
+		$Shield.call_deferred("free")
+	
+	var shield = shield_scene.instance()
+	shield.set_name("Shield")
+	shield.set_position($Body.position)
+	self.add_child(shield)
+	$PowerUp_Text/Label.text = "SHIELD"
 	$PowerUp_Text/AnimationPlayer.play("show_powerup")
 
 func on_Enemy_die():

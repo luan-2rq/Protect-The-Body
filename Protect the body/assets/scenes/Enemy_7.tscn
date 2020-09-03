@@ -12,6 +12,8 @@ radius = 32.4006
 "body",
 "enemy",
 ]]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource( 2 )
 sun_scene = ExtResource( 3 )
 die_sfx = ExtResource( 4 )

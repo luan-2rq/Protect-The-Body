@@ -17,7 +17,7 @@ func _ready():
 	
 	rng.seed = 300
 	rng.randomize()
-	
+	$AnimationPlayer.play("IDLE")
 	plain = rng.randi_range(1,4)
 	side = rng.randi_range(0,1)
 	match plain:

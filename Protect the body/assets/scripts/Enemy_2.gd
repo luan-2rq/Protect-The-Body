@@ -18,7 +18,7 @@ var past_position
 
 func _ready():
 	$AudioStreamPlayer2D.stream = die_sfx
-	
+	$AnimationPlayer.play("IDLE")
 	rng.seed = 300
 	rng.randomize()
 	

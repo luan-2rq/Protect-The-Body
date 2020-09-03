@@ -1,13 +1,8 @@
-extends KinematicBody2D
+extends Enemy
 
 const K = 5                       # número de pétalas da rosácea
 
-export(float) var speed
 export(float) var Raio
-export(AudioStream) var die_sfx
-var rng = RandomNumberGenerator.new()
-var resolution = OS.get_window_size()
-var plain
 
 ### Variáveis usadas na movimentação do tipo rosácea
 var pos = Vector2()
@@ -16,17 +11,11 @@ var theta = 0                     # ângulo da rosácea
 var t = 0                         # variável de interpolação
 var d = 2                         # distância entre o centro e a posição da rosácea mais próxima do centro
 
-signal die
 ##Particle generator variables
 var past_position
 
 func _ready():
-	$AudioStreamPlayer2D.stream = die_sfx
 	$AnimationPlayer.play("IDLE")
-	rng.seed = 300
-	rng.randomize()
-	
-	plain = rng.randi_range(1,4)
 	match plain:
 		1:
 			pos.x = 0
@@ -67,11 +56,3 @@ func set_particle_generator_rotation(body_position, main_movement_direction = nu
 			direction = body_position - past_position
 			$CPUParticles2D.rotation = atan2(direction.y, direction.x) + PI/2
 		past_position = body_position
-
-func die():
-	$AudioStreamPlayer2D.playing = true
-	#get_parent().get_node("Control").points += 100
-	emit_signal("die")
-
-func _on_AudioStreamPlayer2D_finished():
-	queue_free()

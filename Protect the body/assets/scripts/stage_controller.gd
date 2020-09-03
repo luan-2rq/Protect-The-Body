@@ -108,5 +108,4 @@ func on_Enemy_die():
 	$Points_Box._update_points(100)
 
 func _on_pointer_death():
-	print("Dead")
 	get_tree().paused = true

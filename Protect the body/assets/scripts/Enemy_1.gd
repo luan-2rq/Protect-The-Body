@@ -1,24 +1,12 @@
-extends KinematicBody2D
+extends Enemy
 
-export(float) var speed
 export(float) var Raio
-export(AudioStream) var die_sfx
 var vetor
-var acel
-var rng = RandomNumberGenerator.new()
-var resolution = OS.get_window_size()
 var side
-var plain
 var pos = Vector2()
-signal die
 
 func _ready():
-	$AudioStreamPlayer2D.stream = die_sfx
-	
-	rng.seed = 300
-	rng.randomize()
 	$AnimationPlayer.play("IDLE")
-	plain = rng.randi_range(1,4)
 	side = rng.randi_range(0,1)
 	match plain:
 		1:
@@ -63,14 +51,3 @@ func _physics_process(delta):
 	
 func set_particle_generator_rotation(direction_x, direction_y):
 	$CPUParticles2D.rotation = atan2(direction_y, direction_x) + 3 * PI/2
-
-func die():
-	$AudioStreamPlayer2D.playing = true
-	#get_parent().get_node("Control").points += 100
-	var s = preload("res://assets/HUD/Points/Point animation.tscn").instance()
-	add_child(s)
-	s.get_node("AnimationPlayer").play("IDLE")
-	emit_signal("die")
-
-func _on_AudioStreamPlayer2D_finished():
-	queue_free()

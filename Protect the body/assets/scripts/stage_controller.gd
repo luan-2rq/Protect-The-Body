@@ -61,8 +61,7 @@ func on_Enemy_7_created_enemy(sun):
 	add_child(sun)
 
 func _on_PowerUp_spawning_timeout():
-	#powerup = rng.randi_range(1, 4)
-	powerup = 4
+	powerup = rng.randi_range(1, 4)
 	match powerup:
 		1:
 			powerup_scene = powerup1_scene.instance()

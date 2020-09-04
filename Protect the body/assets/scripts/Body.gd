@@ -14,4 +14,4 @@ func _on_Area2D_body_entered(body):
 
 func clean():
 	for x in get_tree().get_nodes_in_group("enemy"):
-			x.free()
+			x.call_deferred("free")

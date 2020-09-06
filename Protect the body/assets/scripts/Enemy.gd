@@ -22,6 +22,7 @@ func _ready():
 func die():
 	$AudioStreamPlayer2D.playing = true
 	
+	
 	var points = preload("res://assets/HUD/Points/Point animation.tscn").instance()
 	add_child(points)
 	points.get_node("AnimationPlayer").connect("animation_finished", self, "_on_Points_Animation_finished")

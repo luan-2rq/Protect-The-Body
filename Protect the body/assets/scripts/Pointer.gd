@@ -21,6 +21,7 @@ func get_input():
 		rotation_direction = 0
 
 func _ready():
+	$Pointer/AnimatedSprite.play("idle")
 	main_body = get_parent()
 	current_body = main_body
 	pointer = $Pointer
@@ -34,10 +35,10 @@ func _input(event):
 func _physics_process(delta):
 	get_input()
 	
-	if !is_moving:
+	if !is_moving and $Pointer/Timer.is_stopped():
 		global_rotation = atan2(-(global_position.x - get_global_mouse_position().x), global_position.y - get_global_mouse_position().y)
 	
-	if is_moving:
+	if is_moving and $Pointer/Timer.is_stopped():
 		pointer.move_and_slide(Vector2(0, -shoot_speed * Global.velocity_modifier).rotated(self.global_rotation))
 	
 	if raycast.is_colliding() && raycast_enabled:
@@ -53,6 +54,13 @@ func shoot():
 	var shoot_position = global_position
 	var shoot_rotation = global_rotation
 	
+	$Pointer/AnimatedSprite.play("jumping")
+	$Pointer/Timer.start()
+	yield($Pointer/Timer, "timeout")
+	#Play the animation and wait it's end
+	
+	$Pointer/AnimatedSprite.play("inJump")
+	
 	pointer.rotation = pointer.rotation + PI
 	
 	if current_body != main_body && !current_body.is_in_group("pivot"):
@@ -65,9 +73,10 @@ func shoot():
 	global_rotation = shoot_rotation
 	is_moving = true
 	$Pointer/Jump_Effect.playing = true
-	
-	
+
+
 func respawn():
+	$Pointer/AnimatedSprite.play("idle")
 	if(is_moving):
 		pointer.rotation = pointer.rotation + PI
 	
@@ -80,8 +89,9 @@ func respawn():
 	
 	position = Vector2(0, 0)
 	pointer.position = Vector2(0, -current_body.get_node("CollisionShape2D").shape.radius * current_body.scale.y) * 1.55
-	
+
 func spawn_on_body():
+	$Pointer/AnimatedSprite.play("idle")
 	is_moving = false
 	raycast_enabled = false
 	main_body.get_node("/root").remove_child(self)

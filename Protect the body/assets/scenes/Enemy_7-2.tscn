@@ -4,7 +4,6 @@
 [ext_resource path="res://assets/scripts/Enemy_7-2.gd" type="Script" id=2]
 [ext_resource path="res://assets/audio/efeitos/Large-Cork-Pop.ogg" type="AudioStream" id=3]
 
-
 [sub_resource type="CircleShape2D" id=1]
 radius = 15.9915
 
@@ -27,8 +26,9 @@ initial_velocity = 50.0
 scale_amount = 4.0
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -1.04674, 2.83739 )
 texture = ExtResource( 1 )
+vframes = 4
+hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

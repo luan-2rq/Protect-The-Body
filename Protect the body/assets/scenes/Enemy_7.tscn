@@ -29,7 +29,6 @@ initial_velocity = 50.0
 scale_amount = 7.0
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -2.14639, 5.86351 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 vframes = 4

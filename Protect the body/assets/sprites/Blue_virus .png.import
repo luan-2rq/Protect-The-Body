@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/die_ciano.png-59081d658f0eadf2bbf08007b7a93f55.stex"
+path="res://.import/Blue_virus .png-c58649fd2ed1d7b3931bbec8929748ab.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/die_ciano.png"
-dest_files=[ "res://.import/die_ciano.png-59081d658f0eadf2bbf08007b7a93f55.stex" ]
+source_file="res://assets/sprites/Blue_virus .png"
+dest_files=[ "res://.import/Blue_virus .png-c58649fd2ed1d7b3931bbec8929748ab.stex" ]
 
 [params]
 

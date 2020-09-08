@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Red_virus.png-2ad53cf2475196e8b0894bfd24caeb23.stex"
+path="res://.import/Red_virus .png-57665701f559b995c2e2848d1ffa2f6d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Red_virus.png"
-dest_files=[ "res://.import/Red_virus.png-2ad53cf2475196e8b0894bfd24caeb23.stex" ]
+source_file="res://assets/sprites/Red_virus .png"
+dest_files=[ "res://.import/Red_virus .png-57665701f559b995c2e2848d1ffa2f6d.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Orange_virus.png-fc4b956a9ac02df31ec9557fd8469fff.stex"
+path="res://.import/Orange_virus .png-aee5e256bfcbf985c1b49cf6d11ba53c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Orange_virus.png"
-dest_files=[ "res://.import/Orange_virus.png-fc4b956a9ac02df31ec9557fd8469fff.stex" ]
+source_file="res://assets/sprites/Orange_virus .png"
+dest_files=[ "res://.import/Orange_virus .png-aee5e256bfcbf985c1b49cf6d11ba53c.stex" ]
 
 [params]
 

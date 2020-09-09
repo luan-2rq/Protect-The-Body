@@ -10,6 +10,7 @@ export(PackedScene)var powerup4_scene
 export(PackedScene)var hp_scene
 export(PackedScene)var points_scene
 export(PackedScene)var poweruptext_scene
+export(PackedScene)var combo_scene
 var enemy_scene
 var powerup_scene
 
@@ -24,6 +25,10 @@ func _ready():
 	var hp_box = hp_scene.instance()
 	var points_box = points_scene.instance()
 	var powerup_text = poweruptext_scene.instance()
+	var combo = combo_scene.instance()
+	
+	combo.set_name("Combo")
+	combo.rect_position.x = 768
 	
 	points_box.set_name("Points_Box")
 	points_box.rect_position.y = 128
@@ -41,9 +46,12 @@ func _ready():
 	pointer = pointer_scene.instance()
 	get_node("Body").add_child(pointer)
 	
+	$Body.connect("damage", self, "_on_damage_taken")
+	
 	self.add_child(hp_box)
 	self.add_child(points_box)
 	self.add_child(powerup_text)
+	self.add_child(combo)
 
 func _on_Enemy_spawning_timeout():
 	enemy = rng.randi_range(1,3)
@@ -104,7 +112,11 @@ func on_PowerUp_shield(shield_scene : PackedScene):
 	$PowerUp_Text/AnimationPlayer.play("show_powerup")
 
 func on_Enemy_die():
-	$Points_Box._update_points(100)
+	$Points_Box._update_points(100 * ($Combo.counter + 1))
+	$Combo._update_mult()
+
+func _on_damage_taken():
+	$Combo._reset_mult()
 
 func _on_pointer_death():
 	get_tree().paused = true

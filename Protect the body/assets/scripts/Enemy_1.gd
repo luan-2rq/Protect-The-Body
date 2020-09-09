@@ -51,3 +51,7 @@ func _physics_process(delta):
 	
 func set_particle_generator_rotation(direction_x, direction_y):
 	$CPUParticles2D.rotation = atan2(direction_y, direction_x) + 3 * PI/2
+
+func _on_Area2D_mouse_entered():
+	if fruit_ninja_power_up:
+		self.die()

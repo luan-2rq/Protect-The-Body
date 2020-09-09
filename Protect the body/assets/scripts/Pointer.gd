@@ -108,3 +108,6 @@ func on_Global_clean():
 
 func die():
 	print("Dead")
+	
+	
+	

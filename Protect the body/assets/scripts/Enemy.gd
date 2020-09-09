@@ -8,6 +8,7 @@ var rng = RandomNumberGenerator.new()
 var resolution = OS.get_window_size()
 var acel
 var plain
+var fruit_ninja_power_up = false
 
 signal die
 

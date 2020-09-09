@@ -44,7 +44,6 @@ tracks/0/keys = {
 collision_layer = 3
 collision_mask = 3
 script = ExtResource( 2 )
-speed = 3.0
 Amp = 100.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
@@ -61,7 +60,6 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 4
-frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -71,4 +69,13 @@ shape = SubResource( 1 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/IDLE = SubResource( 2 )
 anims/die = SubResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_AudioStreamPlayer2D_finished"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_Area2D_mouse_entered"]

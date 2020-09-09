@@ -7,6 +7,7 @@ export(PackedScene)var powerup1_scene
 export(PackedScene)var powerup2_scene
 export(PackedScene)var powerup3_scene
 export(PackedScene)var powerup4_scene
+export(PackedScene)var powerup5_scene
 export(PackedScene)var hp_scene
 export(PackedScene)var points_scene
 export(PackedScene)var poweruptext_scene
@@ -20,6 +21,8 @@ var hp
 var rng = RandomNumberGenerator.new()
 var enemy
 var powerup
+
+export(PackedScene)var fruit_ninja_trail_scene
 
 func _ready():
 	var hp_box = hp_scene.instance()
@@ -69,7 +72,7 @@ func on_Enemy_7_created_enemy(sun):
 	add_child(sun)
 
 func _on_PowerUp_spawning_timeout():
-	powerup = rng.randi_range(1, 4)
+	powerup = rng.randi_range(1, 5)
 	match powerup:
 		1:
 			powerup_scene = powerup1_scene.instance()
@@ -83,6 +86,9 @@ func _on_PowerUp_spawning_timeout():
 		4:
 			powerup_scene = powerup4_scene.instance()
 			powerup_scene.connect("shield", self, "on_PowerUp_shield")
+		5:
+			powerup_scene = powerup5_scene.instance()
+			powerup_scene.connect("fruitninja", self, "on_PowerUp_fruitninja")
 	add_child(powerup_scene)
 
 func on_PowerUp_clean():
@@ -99,11 +105,16 @@ func on_PowerUp_speedup():
 	Global.velocity_modifier += 0.25
 	$PowerUp_Text/Label.text = "SPEED UP"
 	$PowerUp_Text/AnimationPlayer.play("show_powerup")
+	
+func on_PowerUp_fruitninja():
+	add_child(fruit_ninja_trail_scene.instance())
+	$Body.fruit_ninja()
+	$PowerUp_Text/Label.text = "FRUIT NINJA"
+	$PowerUp_Text/AnimationPlayer.play("show_powerup")
 
 func on_PowerUp_shield(shield_scene : PackedScene):
 	if $Shield != null:
 		$Shield.call_deferred("free")
-	
 	var shield = shield_scene.instance()
 	shield.set_name("Shield")
 	shield.set_position($Body.position)

@@ -1,11 +1,7 @@
-extends KinematicBody2D
+extends Enemy
 
-export(AudioStream) var die_sfx
-export (int) var speed
+
 onready var vetor
-var acel
-var rng = RandomNumberGenerator.new()
-var resolution = OS.get_window_size()
 var side
 var y
 onready var pos = Vector2.ZERO
@@ -41,3 +37,8 @@ func die():
 
 func _on_AudioStreamPlayer2D_finished():
 	call_deferred("free")
+
+
+func _on_Area2D_mouse_entered():
+	if fruit_ninja_power_up:
+		self.die()

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Pink_weak_virus .png-9b1d4700780e801647188469960d615d.stex"
+path="res://.import/PowerUp-FruitNinja.png-ce168c0daa16001f3e4ea46e2317c67e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Pink_weak_virus .png"
-dest_files=[ "res://.import/Pink_weak_virus .png-9b1d4700780e801647188469960d615d.stex" ]
+source_file="res://assets/sprites/PowerUp-FruitNinja.png"
+dest_files=[ "res://.import/PowerUp-FruitNinja.png-ce168c0daa16001f3e4ea46e2317c67e.stex" ]
 
 [params]
 

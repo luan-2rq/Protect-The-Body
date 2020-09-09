@@ -1,13 +1,8 @@
-extends KinematicBody2D
+extends Enemy
 
-export(float) var speed
 export(float) var Amp
 var vetor
-var acel = Vector2()
-var rng = RandomNumberGenerator.new()
-var resolution = OS.get_window_size()
 var side
-var plain
 var pos = Vector2()
 var t = 0
 var M = Transform2D()
@@ -17,9 +12,6 @@ var past_position
 
 func _ready():
 	
-	rng.seed = 300
-	rng.randomize()
-	plain = rng.randi_range(1,4)
 	side = rng.randi_range(0,1)
 	match plain:
 		1:
@@ -86,3 +78,8 @@ func die():
 
 func _on_AudioStreamPlayer2D_finished():
 	pass # Replace with function body.
+
+
+func _on_Area2D_mouse_entered():
+	if fruit_ninja_power_up:
+		self.die()

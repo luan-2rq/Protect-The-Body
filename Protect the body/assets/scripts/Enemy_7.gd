@@ -1,26 +1,15 @@
-extends KinematicBody2D
+extends Enemy
 
 export (PackedScene) var sun_scene
-export(AudioStream) var die_sfx
 
 signal created_enemy(enemy)
 
-export (int) var speed
 var vetor
-var acel
-var rng = RandomNumberGenerator.new()
-var resolution = OS.get_window_size()
 var side
-var plain
 var pos = Vector2()
 
 func _ready():
 	$AudioStreamPlayer2D.stream = die_sfx
-	
-	rng.seed = 300
-	rng.randomize()
-	
-	plain = rng.randi_range(1,4)
 	side = rng.randi_range(0,1)
 	match plain:
 		1:
@@ -79,3 +68,8 @@ func _on_AudioStreamPlayer2D_finished():
 	sun2.setup(self.position - 16*Vector2.ONE, -1)
 	emit_signal("created_enemy", sun2)
 	call_deferred("free")
+
+
+func _on_Area2D_mouse_entered():
+	if fruit_ninja_power_up:
+		self.die()

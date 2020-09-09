@@ -62,3 +62,8 @@ func set_particle_generator_rotation(body_position, main_movement_direction = nu
 			direction = body_position - past_position
 			$CPUParticles2D.rotation = atan2(direction.y, direction.x) + PI/2
 		past_position = body_position
+
+
+func _on_Area2D_mouse_entered():
+	if fruit_ninja_power_up:
+		self.die()

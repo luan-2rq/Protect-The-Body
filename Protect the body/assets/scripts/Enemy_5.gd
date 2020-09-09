@@ -1,13 +1,9 @@
-extends KinematicBody2D
+extends Enemy
 
 const SPEED = 200
 const R = 3               # Raio da espiral
 
-export(float) var speed
 export(float) var Raio
-var rng = RandomNumberGenerator.new()
-var resolution = OS.get_window_size()
-var plain
 
 ### Variáveis para a movimentação
 var M = Transform2D()
@@ -76,3 +72,8 @@ func die():
 
 func _on_AudioStreamPlayer2D_finished():
 	pass # Replace with function body.
+
+
+func _on_Area2D_mouse_entered():
+	if fruit_ninja_power_up:
+		self.die()

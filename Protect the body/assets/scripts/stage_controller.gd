@@ -28,7 +28,7 @@ func _ready():
 	var combo = combo_scene.instance()
 	
 	combo.set_name("Combo")
-	combo.rect_position.x = 768
+	combo.rect_position.x = 400
 	
 	points_box.set_name("Points_Box")
 	points_box.rect_position.y = 128

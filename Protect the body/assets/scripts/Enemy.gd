@@ -21,7 +21,7 @@ func _ready():
 
 func die():
 	$AudioStreamPlayer2D.playing = true
-	
+	$AnimationPlayer.play("die")
 	
 	var points = preload("res://assets/HUD/Points/Point animation.tscn").instance()
 	add_child(points)
@@ -29,7 +29,7 @@ func die():
 	points.get_node("AnimationPlayer").play("IDLE")
 	
 	emit_signal("die")
-	$Sprite.visible = false
+	#$Sprite.visible = false
 	$CollisionShape2D.disabled = true
 	$CPUParticles2D.visible = false
 	set_physics_process(false)

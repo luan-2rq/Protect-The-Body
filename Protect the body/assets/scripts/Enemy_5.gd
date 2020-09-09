@@ -72,3 +72,7 @@ func set_particle_generator_rotation(body_position, main_movement_direction = nu
 
 func die():
 	queue_free()
+
+
+func _on_AudioStreamPlayer2D_finished():
+	pass # Replace with function body.

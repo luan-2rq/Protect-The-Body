@@ -14,6 +14,7 @@ func _on_Area2D_body_entered(body):
 		clean()
 
 func clean():
+	$CanvasLayer/AnimationPlayer.play("Pulse")
 	for x in get_tree().get_nodes_in_group("enemy"):
 			x.call_deferred("free")
 			

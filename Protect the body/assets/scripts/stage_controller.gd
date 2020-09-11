@@ -48,9 +48,11 @@ func _ready():
 	hp_box.connect("dead", self, "_on_pointer_death")
 	
 	pointer = pointer_scene.instance()
+	pointer.set_name("Pointer")
 	get_node("Body").add_child(pointer)
 	
 	$Body.connect("damage", self, "_on_damage_taken")
+	$Body.connect("pointer_on_body", self, "_pointer_on_body")
 	
 	self.add_child(hp_box)
 	self.add_child(points_box)
@@ -129,6 +131,9 @@ func on_Enemy_die():
 	$Combo._update_mult()
 
 func _on_damage_taken():
+	$Combo._reset_mult()
+
+func _pointer_on_body():
 	$Combo._reset_mult()
 
 func _on_pointer_death():

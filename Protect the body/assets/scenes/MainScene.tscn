@@ -169,7 +169,6 @@ texture = ExtResource( 11 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Body"]
 scale = Vector2( 2, 2 )
 frames = SubResource( 12 )
-frame = 7
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]

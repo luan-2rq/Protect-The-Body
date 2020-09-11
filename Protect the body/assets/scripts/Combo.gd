@@ -25,7 +25,6 @@ func _update_mult() -> void:
 
 func _reset_mult() -> void:
 	counter = 0
-	first = true
 	
 	if combo_show:
 		_disappear($Combo_Text/AnimationPlayer)
@@ -36,7 +35,10 @@ func _reset_mult() -> void:
 		mult_show = false
 		yield($Multiplier/AnimationPlayer, "animation_finished")
 		$Multiplier.text = ("x%s" % counter)
-	else: $Multiplier.text = ("x%s" % counter)
+	elif !first:
+		$Multiplier.text = ("x%s" % counter)
+	
+	first = true
 
 func _appear(child) -> void:
 	child.play("Appearing")

@@ -146,25 +146,62 @@ __meta__ = {
 heart_stage_scene = ExtResource( 6 )
 arrow = ExtResource( 3 )
 
-[node name="Body" type="Sprite" parent="."]
+[node name="Body" type="Node2D" parent="."]
+
+[node name="Body" type="Sprite" parent="Body"]
+position = Vector2( 400, 392 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 36
+frame = 9
+
+[node name="Body2" type="Sprite" parent="Body"]
+position = Vector2( 456, 392 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 36
+frame = 10
+
+[node name="Body3" type="Sprite" parent="Body"]
 position = Vector2( 512, 392 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 1 )
 vframes = 2
-hframes = 8
-frame = 1
+hframes = 36
+frame = 11
+
+[node name="Body4" type="Sprite" parent="Body"]
+position = Vector2( 568, 392 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 36
+frame = 12
+
+[node name="Body5" type="Sprite" parent="Body"]
+position = Vector2( 624, 392 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 36
+frame = 13
 
 [node name="Heart_Area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Heart_Area"]
-position = Vector2( 520, 304 )
+position = Vector2( 544, 296 )
 shape = SubResource( 1 )
 
 [node name="Heart" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 24.0
+margin_top = -24.0
+margin_right = 64.0
+margin_bottom = 16.0
 mouse_filter = 2
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 

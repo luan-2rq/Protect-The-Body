@@ -2,6 +2,6 @@ extends PowerUp
 
 signal clean
 
-func collected():
+func die():
 	emit_signal("clean")
 	call_deferred("free")

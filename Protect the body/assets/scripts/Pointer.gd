@@ -44,8 +44,6 @@ func _physics_process(delta):
 	if raycast.is_colliding() && raycast_enabled:
 		if raycast.get_collider().is_in_group("body") && raycast.get_collider() != current_body:
 			spawn_on_body()
-		if raycast.get_collider().is_in_group("powerup"):
-			raycast.get_collider().collected()
 	
 	if !$Pointer/VisibilityNotifier2D.is_on_screen() && is_moving:
 		respawn()
@@ -108,6 +106,3 @@ func on_Global_clean():
 
 func die():
 	print("Dead")
-	
-	
-	

@@ -1,13 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://PowerUp-FruitNinja.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/PowerUp-FruitNinja.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/circleFruitNinja.png" type="Texture" id=3]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 18.2565, 19.2678 )
+[sub_resource type="CircleShape2D" id=1]
+radius = 48.5224
 
 [node name="PowerUp-FruitNinja" type="KinematicBody2D" groups=[
-"powerup",
+"body",
 ]]
 script = ExtResource( 1 )
 
@@ -17,16 +18,19 @@ amount = 25
 direction = Vector2( 0, 0 )
 spread = 180.0
 gravity = Vector2( 0, 0 )
-initial_velocity = 30.0
+initial_velocity = 45.0
 orbit_velocity = 0.3
 scale_amount = 3.0
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 1.5, 1.5 )
+scale = Vector2( 1.8, 1.8 )
 texture = ExtResource( 2 )
 
+[node name="Circle" type="Sprite" parent="."]
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 3 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2( 1, 1 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -2,6 +2,6 @@ extends PowerUp
 
 signal restore
 
-func collected():
+func die():
 	emit_signal("restore")
 	call_deferred("free")

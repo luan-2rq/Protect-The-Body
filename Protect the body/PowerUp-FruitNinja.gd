@@ -2,6 +2,6 @@ extends PowerUp
 
 signal fruitninja
 
-func collected():
+func die():
 	emit_signal("fruitninja")
 	call_deferred("free")

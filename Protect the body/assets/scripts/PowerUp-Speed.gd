@@ -2,6 +2,6 @@ extends PowerUp
 
 signal speedup
 
-func collected():
+func die():
 	emit_signal("speedup")
 	call_deferred("free")

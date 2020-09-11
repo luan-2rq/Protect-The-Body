@@ -86,5 +86,4 @@ shape = SubResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_AudioStreamPlayer2D_finished"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_Area2D_mouse_entered"]

@@ -16,6 +16,9 @@ func _setup(body : KinematicBody2D):
 	
 	path = "res://assets/HUD/Sprites/Level" + str(level) + ".png"
 	
+	for i in self.get_children():
+		i.call_deferred("free")
+	
 	for i in range(hp):
 		var hp_sprite = Sprite.new()
 		hp_sprite.texture = load(path)

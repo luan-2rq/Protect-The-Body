@@ -42,6 +42,7 @@ func _ready():
 	$Enemy_spawning.start()
 	$PowerUp_spawning.start()
 	
+	hp_box.set_name("HP")
 	hp_box._setup($Body)
 	hp_box.rect_position = Vector2(17, 17)
 	hp_box.connect("dead", self, "_on_pointer_death")
@@ -98,6 +99,7 @@ func on_PowerUp_clean():
 
 func on_PowerUp_restore():
 	$Body.lifes = $Body.max_lifes
+	$HP._setup($Body)
 	$PowerUp_Text/Label.text = "RESTORE"
 	$PowerUp_Text/AnimationPlayer.play("show_powerup")
 

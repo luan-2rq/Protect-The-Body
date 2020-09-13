@@ -1,14 +1,31 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/sprites/PowerUp-Clean.png" type="Texture" id=1]
-[ext_resource path="res://assets/scripts/PowerUp-Clean.gd" type="Script" id=2]
+[ext_resource path="res://assets/scripts/Base_PowerUp.gd" type="Script" id=2]
 [ext_resource path="res://assets/sprites/circleClean.png" type="Texture" id=3]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.734513, 1 )
+colors = PoolColorArray( 0.821903, 0.265732, 0.839844, 1, 0.74931, 0.382538, 0.898438, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 20.0
+orbit_velocity = 0.2
+orbit_velocity_random = 0.0
+scale = 3.0
+scale_random = 1.0
+color_ramp = SubResource( 2 )
+
+[sub_resource type="CircleShape2D" id=4]
 radius = 49.6596
 
-[sub_resource type="Animation" id=2]
-resource_name = "Rotate"
+[sub_resource type="Animation" id=5]
 loop = true
 step = 0.25
 tracks/0/type = "value"
@@ -29,16 +46,11 @@ tracks/0/keys = {
 ]]
 script = ExtResource( 2 )
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-modulate = Color( 0.909804, 0.356863, 0.988235, 1 )
-amount = 25
-preprocess = 10.0
-direction = Vector2( 0, 0 )
-spread = 180.0
-gravity = Vector2( 0, 0 )
-initial_velocity = 45.0
-orbit_velocity = 0.3
-scale_amount = 3.0
+[node name="Particles2D" type="Particles2D" parent="."]
+amount = 40
+lifetime = 2.0
+preprocess = 20.0
+process_material = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 1.8, 1.8 )
@@ -49,10 +61,10 @@ scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Rotate = SubResource( 2 )
+anims/Rotate = SubResource( 5 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0

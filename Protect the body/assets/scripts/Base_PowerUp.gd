@@ -6,6 +6,8 @@ var plain : int
 var pos : Vector2
 onready var resolution : Vector2 = OS.get_window_size()
 
+signal collected
+
 func _ready():
 	$Timer.connect("timeout", self, "on_Timer_timeout")
 	$Timer.start()
@@ -32,4 +34,8 @@ func _ready():
 	self.position = pos
 
 func on_Timer_timeout():
+	call_deferred("free")
+
+func die():
+	emit_signal("collected")
 	call_deferred("free")

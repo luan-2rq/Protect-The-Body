@@ -7,6 +7,7 @@ export(PackedScene)var powerup1_scene
 export(PackedScene)var powerup2_scene
 export(PackedScene)var powerup3_scene
 export(PackedScene)var powerup4_scene
+export(PackedScene)var shield_scene
 export(PackedScene)var powerup5_scene
 export(PackedScene)var hp_scene
 export(PackedScene)var points_scene
@@ -79,51 +80,41 @@ func _on_PowerUp_spawning_timeout():
 	match powerup:
 		1:
 			powerup_scene = powerup1_scene.instance()
-			powerup_scene.connect("speedup", self, "on_PowerUp_speedup")
 		2:
 			powerup_scene = powerup2_scene.instance()
-			powerup_scene.connect("clean", self, "on_PowerUp_clean")
 		3:
 			powerup_scene = powerup3_scene.instance()
-			powerup_scene.connect("restore", self, "on_PowerUp_restore")
 		4:
 			powerup_scene = powerup4_scene.instance()
-			powerup_scene.connect("shield", self, "on_PowerUp_shield")
 		5:
 			powerup_scene = powerup5_scene.instance()
-			powerup_scene.connect("fruitninja", self, "on_PowerUp_fruitninja")
+	powerup_scene.connect("collected", self, "on_PowerUp_collected")
 	add_child(powerup_scene)
 
-func on_PowerUp_clean():
-	$Body.clean()
-	$PowerUp_Text/Label.text = "CLEAN UP"
-	$PowerUp_Text/AnimationPlayer.play("show_powerup")
-
-func on_PowerUp_restore():
-	$Body.lifes = $Body.max_lifes
-	$HP._setup($Body)
-	$PowerUp_Text/Label.text = "RESTORE"
-	$PowerUp_Text/AnimationPlayer.play("show_powerup")
-
-func on_PowerUp_speedup():
-	Global.velocity_modifier += 0.25
-	$PowerUp_Text/Label.text = "SPEED UP"
-	$PowerUp_Text/AnimationPlayer.play("show_powerup")
-	
-func on_PowerUp_fruitninja():
-	add_child(fruit_ninja_trail_scene.instance())
-	$Body.fruit_ninja()
-	$PowerUp_Text/Label.text = "FRUIT NINJA"
-	$PowerUp_Text/AnimationPlayer.play("show_powerup")
-
-func on_PowerUp_shield(shield_scene : PackedScene):
-	if $Shield != null:
-		$Shield.call_deferred("free")
-	var shield = shield_scene.instance()
-	shield.set_name("Shield")
-	shield.set_position($Body.position)
-	self.add_child(shield)
-	$PowerUp_Text/Label.text = "SHIELD"
+func on_PowerUp_collected():
+	match powerup:
+		1:
+			Global.velocity_modifier += 0.25
+			$PowerUp_Text/Label.text = "SPEED UP"
+		2:
+			$Body.clean()
+			$PowerUp_Text/Label.text = "CLEAN UP"
+		3:
+			$Body.lifes = $Body.max_lifes
+			$HP._setup($Body)
+			$PowerUp_Text/Label.text = "RESTORE"
+		4:
+			if $Shield != null:
+				$Shield.call_deferred("free")
+			var shield = shield_scene.instance()
+			shield.set_name("Shield")
+			shield.set_position($Body.position)
+			self.add_child(shield)
+			$PowerUp_Text/Label.text = "SHIELD"
+		5:
+			add_child(fruit_ninja_trail_scene.instance())
+			$Body.fruit_ninja()
+			$PowerUp_Text/Label.text = "FRUIT NINJA"
 	$PowerUp_Text/AnimationPlayer.play("show_powerup")
 
 func on_Enemy_die():

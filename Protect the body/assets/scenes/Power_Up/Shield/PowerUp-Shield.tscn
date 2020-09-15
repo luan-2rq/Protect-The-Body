@@ -1,9 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/sprites/PowerUp-Shield.png" type="Texture" id=1]
-[ext_resource path="res://assets/scripts/PowerUp-Shield.gd" type="Script" id=2]
 [ext_resource path="res://assets/scenes/Power_Up/Animation/Rotate.tres" type="Animation" id=3]
-[ext_resource path="res://assets/scenes/Power_Up/Shield/Shield.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/sprites/circleShield.png" type="Texture" id=5]
 
 [sub_resource type="Gradient" id=1]
@@ -30,8 +28,6 @@ radius = 48.9122
 [node name="PowerUp_Shield" type="KinematicBody2D" groups=[
 "body",
 ]]
-script = ExtResource( 2 )
-shield_scene = ExtResource( 4 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 amount = 40

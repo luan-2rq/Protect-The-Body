@@ -76,7 +76,7 @@ func on_Enemy_7_created_enemy(sun):
 	add_child(sun)
 
 func _on_PowerUp_spawning_timeout():
-	powerup = rng.randi_range(1, 5)
+	powerup = rng.randi_range(1,1)
 	match powerup:
 		1:
 			powerup_scene = powerup1_scene.instance()
@@ -94,8 +94,8 @@ func _on_PowerUp_spawning_timeout():
 func on_PowerUp_collected():
 	match powerup:
 		1:
-			Global.velocity_modifier += 0.25
-			$PowerUp_Text/Label.text = "SPEED UP"
+			pointer.scale += Vector2(0.2, 0.2)
+			$PowerUp_Text/Label.text = "GROW UP"
 		2:
 			$Body.clean()
 			$PowerUp_Text/Label.text = "CLEAN UP"

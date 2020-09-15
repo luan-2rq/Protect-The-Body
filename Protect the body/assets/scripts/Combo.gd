@@ -21,10 +21,12 @@ func _update_mult() -> void:
 	_appear($Multiplier/AnimationPlayer)
 	mult_show = true
 	
+	Global.velocity_modifier += 0.1
 	$Timer.start()
 
 func _reset_mult() -> void:
 	counter = 0
+	Global.velocity_modifier = 1.0
 	
 	if combo_show:
 		_disappear($Combo_Text/AnimationPlayer)

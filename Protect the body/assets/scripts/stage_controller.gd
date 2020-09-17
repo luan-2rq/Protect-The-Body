@@ -82,7 +82,7 @@ func on_Enemy_7_created_enemy(sun):
 	add_child(sun)
 
 func _on_PowerUp_spawning_timeout():
-	powerup = rng.randi_range(1,1)
+	powerup = rng.randi_range(1,5)
 	match powerup:
 		1:
 			powerup_scene = powerup1_scene.instance()
@@ -110,7 +110,7 @@ func on_PowerUp_collected():
 			$HP._setup($Body)
 			$PowerUp_Text/Label.text = "RESTORE"
 		4:
-			if $Shield != null:
+			if self.has_node("Shield"):
 				$Shield.call_deferred("free")
 			var shield = shield_scene.instance()
 			shield.set_name("Shield")

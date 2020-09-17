@@ -11,6 +11,9 @@ func _physics_process(_delta):
 
 func _on_Area2D_body_entered(body):
 	if(body.is_in_group("enemy")):
+		if(body.has_node("Pointer")):
+			var pointer = body.get_node("Pointer")
+			pointer.respawn()
 		body.call_deferred("free")
 		hits -= 1
 

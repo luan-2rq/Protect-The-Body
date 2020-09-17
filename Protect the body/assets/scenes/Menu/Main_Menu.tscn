@@ -8,9 +8,6 @@
 [ext_resource path="res://assets/scenes/MainScene.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/sprites/bg-heart-frame.png" type="Texture" id=7]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 40.0
-
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 32, 32 )
@@ -135,6 +132,9 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="CircleShape2D" id=1]
+radius = 40.0
+
 [node name="Main_Menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -145,6 +145,9 @@ __meta__ = {
 }
 heart_stage_scene = ExtResource( 6 )
 arrow = ExtResource( 3 )
+
+[node name="Tween" type="Tween" parent="."]
+pause_mode = 2
 
 [node name="Body" type="Node2D" parent="."]
 
@@ -188,12 +191,6 @@ vframes = 2
 hframes = 36
 frame = 13
 
-[node name="Heart_Area" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Heart_Area"]
-position = Vector2( 544, 296 )
-shape = SubResource( 1 )
-
 [node name="Heart" type="Control" parent="."]
 margin_left = 24.0
 margin_top = -24.0
@@ -201,7 +198,6 @@ margin_right = 64.0
 margin_bottom = 16.0
 mouse_filter = 2
 __meta__ = {
-"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
@@ -212,11 +208,12 @@ scale = Vector2( 0.742589, 0.748967 )
 texture = ExtResource( 7 )
 
 [node name="Heart_Animation" type="AnimatedSprite" parent="Heart"]
+pause_mode = 2
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 576, 224 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 11 )
-frame = 6
+frame = 1
 playing = true
 
 [node name="Heart_Frame" type="Sprite" parent="Heart"]
@@ -228,6 +225,18 @@ texture = ExtResource( 4 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Heart"]
 anims/Disappearing = SubResource( 12 )
 anims/Showing = SubResource( 13 )
+
+[node name="Heart_Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Heart_Area"]
+position = Vector2( 544, 296 )
+shape = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+pause_mode = 2
+position = Vector2( 512, 360 )
+current = true
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
 [connection signal="input_event" from="Heart_Area" to="." method="_on_Heart_Area_input_event"]
 [connection signal="mouse_entered" from="Heart_Area" to="." method="_on_Heart_Area_mouse_entered"]
 [connection signal="mouse_exited" from="Heart_Area" to="." method="_on_Heart_Area_mouse_exited"]

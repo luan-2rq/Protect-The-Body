@@ -52,13 +52,19 @@ func _ready():
 	pointer.set_name("Pointer")
 	get_node("Body").add_child(pointer)
 	
+	# warning-ignore:return_value_discarded
 	$Body.connect("damage", self, "_on_damage_taken")
+	# warning-ignore:return_value_discarded
 	$Body.connect("pointer_on_body", self, "_pointer_on_body")
 	
 	self.add_child(hp_box)
 	self.add_child(points_box)
 	self.add_child(powerup_text)
 	self.add_child(combo)
+	
+	get_tree().paused = false
+	$Tween.interpolate_property($Camera2D, "zoom", $Camera2D.zoom, Vector2(1, 1), 1)
+	$Tween.start()
 
 func _on_Enemy_spawning_timeout():
 	enemy = rng.randi_range(1,3)
@@ -129,3 +135,4 @@ func _pointer_on_body():
 
 func _on_pointer_death():
 	get_tree().paused = true
+

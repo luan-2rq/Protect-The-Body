@@ -1,5 +1,7 @@
 extends VBoxContainer
 
+export(PackedScene) var heart_scene
+
 var sprites : Array = []
 var organ : KinematicBody2D
 var hp : int
@@ -20,10 +22,16 @@ func _setup(body : KinematicBody2D):
 		i.call_deferred("free")
 	
 	for i in range(hp):
-		var hp_sprite = Sprite.new()
-		hp_sprite.texture = load(path)
-		hp_sprite.position.x = i * 34
+		var hp_sprite = heart_scene.instance()
+		var node_name = "Heart" + str(i)
+		var node_anim
+		hp_sprite.set_name(node_name)
+		hp_sprite.position.x = i * 36
+		
 		self.add_child(hp_sprite)
+		
+		node_anim = self.get_node(node_name + "/AnimationPlayer")
+		node_anim.play("Heart_Animation")
 
 func _process(_delta):
 	if hp == 0:

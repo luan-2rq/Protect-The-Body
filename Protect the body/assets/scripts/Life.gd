@@ -26,7 +26,7 @@ func _setup(body : KinematicBody2D):
 		var node_name = "Heart" + str(i)
 		var node_anim
 		hp_sprite.set_name(node_name)
-		hp_sprite.position.x = i * 36
+		hp_sprite.position.x = i * 40
 		
 		self.add_child(hp_sprite)
 		

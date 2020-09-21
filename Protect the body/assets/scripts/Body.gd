@@ -12,13 +12,17 @@ func _on_Area2D_body_entered(body):
 		emit_signal("damage")
 		var pointer = get_parent().pointer
 		pointer.respawn()
-		clean()
+		clean(true)
 
-func clean():
-	$CanvasLayer/AnimationPlayer.play("Pulse")
-	for x in get_tree().get_nodes_in_group("enemy"):
-			x.call_deferred("free")
-			
+func clean(damage):
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+			if damage:
+				$CanvasLayer/AnimationPlayer.play("Pulse")
+				enemy.call_deferred("free")
+			else:
+				$CanvasLayer/AnimationPlayer.play("Clean")
+				enemy.die()
+
 func fruit_ninja():
 	fruit_ninja = true
 	$Timer.start()

@@ -26,12 +26,13 @@
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 22 )
 shader_param/center = Vector2( 0.5, 0.5 )
-shader_param/force = 0.0
-shader_param/size = 1.0
+shader_param/force = 1.0
+shader_param/size = 0.0
 shader_param/thickness = 0.05
 
 [sub_resource type="Animation" id=2]
-resource_name = "Pulse"
+resource_name = "Clean"
+step = 0.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:material:shader_param/force")
 tracks/0/interp = 1
@@ -66,7 +67,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.5, 1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0.0470588, 1 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.909804, 0.0196078, 0.937255, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="AtlasTexture" id=3]
@@ -161,6 +162,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Body/CanvasLayer"]
+anims/Clean = SubResource( 2 )
 anims/Pulse = SubResource( 2 )
 
 [node name="Circle" type="Sprite" parent="Body"]
@@ -170,7 +172,7 @@ texture = ExtResource( 11 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Body"]
 scale = Vector2( 2, 2 )
 frames = SubResource( 12 )
-frame = 5
+frame = 4
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
@@ -197,7 +199,7 @@ stream = ExtResource( 8 )
 autoplay = true
 
 [node name="PowerUp_spawning" type="Timer" parent="."]
-wait_time = 20.0
+wait_time = 10.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 512.08, 358.398 )

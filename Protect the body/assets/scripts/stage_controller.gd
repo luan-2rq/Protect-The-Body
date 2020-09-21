@@ -103,7 +103,7 @@ func on_PowerUp_collected():
 			pointer.scale += Vector2(0.2, 0.2)
 			$PowerUp_Text/Label.text = "GROW UP"
 		2:
-			$Body.clean()
+			$Body.clean(false)
 			$PowerUp_Text/Label.text = "CLEAN UP"
 		3:
 			$Body.lifes = $Body.max_lifes

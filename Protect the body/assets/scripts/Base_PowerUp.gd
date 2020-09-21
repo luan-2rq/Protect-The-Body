@@ -34,7 +34,11 @@ func _ready():
 	self.position = pos
 
 func on_Timer_timeout():
-	call_deferred("free")
+	if not self.has_node("Pointer"):
+		call_deferred("free")
+	else: 
+		$Timer.wait_time = 0.1
+		$Timer.start()
 
 func die():
 	emit_signal("collected")

@@ -77,6 +77,8 @@ func _on_Enemy_spawning_timeout():
 			enemy_scene = enemy4_scene.instance()
 	enemy_scene.connect("die", self, "on_Enemy_die")
 	add_child(enemy_scene)
+	
+	$Enemy_spawning.wait_time -= 0.02
 
 func on_Enemy_7_created_enemy(sun):
 	add_child(sun)

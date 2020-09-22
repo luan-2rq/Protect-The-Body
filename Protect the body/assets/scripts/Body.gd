@@ -5,7 +5,6 @@ onready var canvas
 
 onready var max_lifes = 3
 onready var lifes = max_lifes
-var fruit_ninja
 
 signal damage()
 signal pointer_on_body()
@@ -18,7 +17,7 @@ func _on_Area2D_body_entered(body):
 		clean(true)
 
 func clean(damage):
-	fruit_ninja = false
+	Global.ninja = false
 	$Timer.stop()
 	for x in get_tree().get_nodes_in_group("trail"):
 		x.call_deferred("free")
@@ -38,21 +37,21 @@ func on_canvas_animation_finished(AnimName):
 	$CanvasLayer.call_deferred("free")
 
 func fruit_ninja():
-	fruit_ninja = true
+	Global.ninja = true
 	$Timer.start()
 	
 func _process(_delta):
 	if self.has_node("Pointer"):
 		emit_signal("pointer_on_body")
 	
-	if fruit_ninja:
+	if Global.ninja:
 		for x in get_tree().get_nodes_in_group("enemy"):
 			if not x.has_node("Pointer"):
 				x.set_deferred("fruit_ninja_power_up", true)
 			else: x.set_deferred("fruit_ninja_power_up", false)
 	
 func _on_Timer_timeout():
-	fruit_ninja = false
+	Global.ninja = false
 	for x in get_tree().get_nodes_in_group("trail"):
 		x.call_deferred("free")
 	for x in get_tree().get_nodes_in_group("enemy"):

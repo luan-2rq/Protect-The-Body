@@ -122,7 +122,7 @@ func on_PowerUp_collected():
 		5:
 			add_child(fruit_ninja_trail_scene.instance())
 			$Body.fruit_ninja()
-			$PowerUp_Text/Label.text = "FRUIT NINJA"
+			$PowerUp_Text/Label.text = "NINJA"
 	$PowerUp_Text/AnimationPlayer.play("show_powerup")
 
 func on_Enemy_die():

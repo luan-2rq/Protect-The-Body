@@ -23,8 +23,9 @@ func _ready():
 	#get_parent().get_parent().connect("respawn", self, "on_Stage_respawn")
 
 func _input(event):
-	if event.is_action_pressed("pointer_shoot") && current_body != null && !is_moving:
+	if event.is_action_pressed("pointer_shoot") && current_body != null && !is_moving && !Global.ninja:
 		call_deferred("shoot")
+
 func _physics_process(delta):
 	if !is_moving and $Pointer/Timer.is_stopped():
 		global_rotation = atan2(-(global_position.x - get_global_mouse_position().x), global_position.y - get_global_mouse_position().y)
@@ -35,6 +36,11 @@ func _physics_process(delta):
 	if raycast.is_colliding() && raycast_enabled:
 		if raycast.get_collider().is_in_group("body") && raycast.get_collider() != current_body:
 			spawn_on_body()
+	
+	if Global.ninja && $Pointer/Ninja_Mode.is_stopped():
+		respawn()
+		$Pointer/AnimatedSprite.play("Ninja")
+		$Pointer/Ninja_Mode.start()
 	
 	if !$Pointer/VisibilityNotifier2D.is_on_screen() && is_moving:
 		respawn()
@@ -96,4 +102,7 @@ func on_Global_clean():
 	respawn()
 
 func die():
-	print("Dead")
+	pass
+
+func _on_Ninja_Mode_timeout():
+	$Pointer/AnimatedSprite.play("idle")

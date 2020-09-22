@@ -14,12 +14,6 @@ var rotation_direction = 0
 var pointer
 var raycast
 
-func get_input():
-	if Input.is_action_just_released(('ui_right')):
-		rotation_direction = 0
-	if Input.is_action_just_released(('ui_left')):
-		rotation_direction = 0
-
 func _ready():
 	$Pointer/AnimatedSprite.play("idle")
 	main_body = get_parent()
@@ -31,10 +25,7 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("pointer_shoot") && current_body != null && !is_moving:
 		call_deferred("shoot")
-		
 func _physics_process(delta):
-	get_input()
-	
 	if !is_moving and $Pointer/Timer.is_stopped():
 		global_rotation = atan2(-(global_position.x - get_global_mouse_position().x), global_position.y - get_global_mouse_position().y)
 	

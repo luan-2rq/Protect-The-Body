@@ -12,14 +12,14 @@ export(int)var rotation_speed
 var rotation_direction = 0
 
 var pointer
-var raycast
+var raycasts
 
 func _ready():
 	$Pointer/AnimatedSprite.play("idle")
 	main_body = get_parent()
 	current_body = main_body
 	pointer = $Pointer
-	raycast = pointer.get_node("RayCast2D")
+	raycasts = [pointer.get_node("RayCast2D"), pointer.get_node("RayCast2D2"), pointer.get_node("RayCast2D3")]
 	#get_parent().get_parent().connect("respawn", self, "on_Stage_respawn")
 
 func _input(event):
@@ -32,10 +32,10 @@ func _physics_process(delta):
 	
 	if is_moving and $Pointer/Timer.is_stopped():
 		pointer.move_and_slide(Vector2(0, -shoot_speed * Global.velocity_modifier).rotated(self.global_rotation))
-	
-	if raycast.is_colliding() && raycast_enabled:
-		if raycast.get_collider().is_in_group("body") && raycast.get_collider() != current_body:
-			spawn_on_body()
+	for i in range(raycasts.size()):
+		if raycasts[i].is_colliding() && raycast_enabled:
+			if raycasts[i].get_collider().is_in_group("body") && raycasts[i].get_collider() != current_body:
+				spawn_on_body()
 	
 	if Global.ninja && $Pointer/Ninja_Mode.is_stopped():
 		respawn()
@@ -91,10 +91,10 @@ func spawn_on_body():
 	raycast_enabled = false
 	main_body.get_node("/root").remove_child(self)
 	pointer.rotation = pointer.rotation + PI
-	current_body = raycast.get_collider()
+	current_body = get_current_body()
 	current_body.add_child(self)
 	position =  Vector2(0, 0)
-	var local_hit_position = current_body.to_local(raycast.get_collision_point())
+	var local_hit_position = current_body.to_local(get_raycast_collision_point())
 	pointer.position = Vector2(0, -local_hit_position.length() - 29)
 	rotation = atan2(local_hit_position.y, local_hit_position.x) + PI/2
 
@@ -106,3 +106,13 @@ func die():
 
 func _on_Ninja_Mode_timeout():
 	$Pointer/AnimatedSprite.play("idle")
+	
+func get_current_body():
+	for i in range(raycasts.size()):
+		if raycasts[i].get_collider():
+			return  raycasts[i].get_collider()
+	
+func get_raycast_collision_point():
+	for i in range(raycasts.size()):
+		if raycasts[i].get_collider():
+			return  raycasts[i].get_collision_point()

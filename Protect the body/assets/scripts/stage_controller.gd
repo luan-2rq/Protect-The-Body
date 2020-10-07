@@ -107,7 +107,7 @@ func on_PowerUp_collected():
 		2:
 			$Body.clean(false)
 			$PowerUp_Text/Label.text = "CLEAN UP"
-		3:
+		5:
 			$Body.lifes = $Body.max_lifes
 			$HP._setup($Body)
 			$PowerUp_Text/Label.text = "RESTORE"
@@ -119,7 +119,7 @@ func on_PowerUp_collected():
 			shield.set_position($Body.position)
 			self.add_child(shield)
 			$PowerUp_Text/Label.text = "SHIELD"
-		5:
+		3:
 			add_child(fruit_ninja_trail_scene.instance())
 			$Body.fruit_ninja()
 			$PowerUp_Text/Label.text = "NINJA"

@@ -1,6 +1,5 @@
 extends Enemy
 
-export(float) var Raio
 var vetor
 var side
 var pos = Vector2()
@@ -11,6 +10,7 @@ var M = Transform2D()
 var past_position
 
 func _ready():
+	raio = 50
 	$AudioStreamPlayer2D.stream = die_sfx
 	$AnimationPlayer.play("IDLE")
 	side = rng.randi_range(0,1)
@@ -69,14 +69,3 @@ func _physics_process(delta):
 	
 func set_particle_generator_rotation(direction_x, direction_y):
 	$CPUParticles2D.rotation = atan2(direction_y, direction_x) + 3 * PI/2
-
-func die():
-	$AudioStreamPlayer2D.playing = true
-
-func _on_AudioStreamPlayer2D_finished():
-	queue_free()
-
-
-func _on_Area2D_mouse_entered():
-	if fruit_ninja_power_up:
-		self.die()

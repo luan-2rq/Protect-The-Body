@@ -31,14 +31,3 @@ func setup(pos, coord):
 		vetor = Vector2(1, y)
 	else:
 		vetor = Vector2(-1, y)
-
-func die():
-	$AudioStreamPlayer2D.playing = true
-
-func _on_AudioStreamPlayer2D_finished():
-	call_deferred("free")
-
-
-func _on_Area2D_mouse_entered():
-	if fruit_ninja_power_up:
-		self.die()

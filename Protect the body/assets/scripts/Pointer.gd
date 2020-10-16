@@ -51,12 +51,8 @@ func shoot():
 	
 	$Pointer/AnimatedSprite.play("jumping")
 	$Pointer/Timer.start()
-	yield($Pointer/Timer, "timeout")
+	
 	#Play the animation and wait it's end
-	
-	$Pointer/AnimatedSprite.play("inJump")
-	
-	pointer.rotation = pointer.rotation + PI
 	
 	if current_body != main_body && !current_body.is_in_group("pivot"):
 		current_body.die()
@@ -68,6 +64,11 @@ func shoot():
 	global_rotation = shoot_rotation
 	is_moving = true
 	$Pointer/Jump_Effect.playing = true
+	
+	yield($Pointer/Timer, "timeout")
+	pointer.rotation = pointer.rotation + PI
+	
+	$Pointer/AnimatedSprite.play("inJump")
 
 
 func respawn():

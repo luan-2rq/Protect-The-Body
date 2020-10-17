@@ -1,7 +1,5 @@
 extends Enemy
 
-
-onready var vetor
 var side
 var y
 onready var pos = Vector2.ZERO

@@ -12,7 +12,10 @@ func _ready():
 	$Timer.connect("timeout", self, "on_Timer_timeout")
 	$Timer.start()
 	
-	$AnimationPlayer.play("Rotate")
+	$Tween.interpolate_property(self, "scale", Vector2.ZERO, Vector2.ONE, 0.8, Tween.TRANS_BACK, Tween.EASE_OUT)
+	$Tween.start()
+	
+	$AnimationPlayer.play("powerup_anim")
 	
 	rng.randomize()
 	

@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/scripts/Base_PowerUp.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/PowerUp-Speed.png" type="Texture" id=2]
+[ext_resource path="res://assets/scenes/Power_Up/powerup_anim.tres" type="Animation" id=3]
 [ext_resource path="res://assets/sprites/circleGrowUp.png" type="Texture" id=4]
 
 [sub_resource type="Gradient" id=1]
@@ -52,3 +53,6 @@ wait_time = 5.0
 one_shot = true
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/powerup_anim = ExtResource( 3 )

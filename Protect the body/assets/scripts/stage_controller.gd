@@ -84,7 +84,7 @@ func on_Enemy_7_created_enemy(sun):
 	add_child(sun)
 
 func _on_PowerUp_spawning_timeout():
-	powerup = rng.randi_range(1,5)
+	powerup = rng.randi_range(1, 5)
 	match powerup:
 		1:
 			powerup_scene = powerup1_scene.instance()
@@ -102,12 +102,13 @@ func _on_PowerUp_spawning_timeout():
 func on_PowerUp_collected():
 	match powerup:
 		1:
-			pointer.scale += Vector2(0.2, 0.2)
+			pointer.get_node("Pointer").scale += Vector2(0.2, 0.2)
+			pointer.get_node("Pointer").position.y -= 16
 			$PowerUp_Text/Label.text = "GROW UP"
 		2:
 			$Body.clean(false)
 			$PowerUp_Text/Label.text = "CLEAN UP"
-		5:
+		3:
 			$Body.lifes = $Body.max_lifes
 			$HP._setup($Body)
 			$PowerUp_Text/Label.text = "RESTORE"
@@ -119,7 +120,7 @@ func on_PowerUp_collected():
 			shield.set_position($Body.position)
 			self.add_child(shield)
 			$PowerUp_Text/Label.text = "SHIELD"
-		3:
+		5:
 			add_child(fruit_ninja_trail_scene.instance())
 			$Body.fruit_ninja()
 			$PowerUp_Text/Label.text = "NINJA"
@@ -137,4 +138,3 @@ func _pointer_on_body():
 
 func _on_pointer_death():
 	get_tree().paused = true
-

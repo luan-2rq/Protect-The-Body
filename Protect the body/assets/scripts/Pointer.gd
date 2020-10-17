@@ -37,11 +37,10 @@ func _physics_process(delta):
 			if raycasts[i].get_collider().is_in_group("body") && raycasts[i].get_collider() != current_body:
 				spawn_on_body()
 	
-	if Global.ninja && $Pointer/Ninja_Mode.is_stopped():
+	if Global.ninja:
 		respawn()
 		$Pointer/AnimatedSprite.play("Ninja")
-		$Pointer/Ninja_Mode.start()
-	
+
 	if !$Pointer/VisibilityNotifier2D.is_on_screen() && is_moving:
 		respawn()
 
@@ -72,7 +71,10 @@ func shoot():
 
 
 func respawn():
-	$Pointer/AnimatedSprite.play("idle")
+	if Global.ninja:
+		$Pointer/AnimatedSprite.play("ninja")
+	else:
+		$Pointer/AnimatedSprite.play("idle")
 	if(is_moving):
 		pointer.rotation = pointer.rotation + PI
 	
@@ -105,9 +107,6 @@ func on_Global_clean():
 func die():
 	pass
 
-func _on_Ninja_Mode_timeout():
-	$Pointer/AnimatedSprite.play("idle")
-	
 func get_current_body():
 	for i in range(raycasts.size()):
 		if raycasts[i].get_collider():

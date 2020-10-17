@@ -10,7 +10,6 @@ var acel
 var vetor = Vector2()
 var plain
 var side
-var fruit_ninja_power_up = false
 var pos = Vector2()
 var state
 var raio
@@ -95,6 +94,7 @@ func parametric_function(state, delta):
 
 func die():
 	$AudioStreamPlayer2D.playing = true
+	$Area2D.call_deferred("free")
 	$AnimationPlayer.play("die")
 	
 	var points = preload("res://assets/HUD/Points/Point animation.tscn").instance()
@@ -111,6 +111,6 @@ func die():
 func _on_Points_Animation_finished(IDLE):
 	call_deferred("free")
 
-func _on_Area2D_mouse_entered(body):
-	if fruit_ninja_power_up:
+func _on_Area2D_mouse_entered():
+	if Global.ninja:
 		self.die()

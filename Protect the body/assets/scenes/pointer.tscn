@@ -35,6 +35,30 @@ region = Rect2( 128, 0, 32, 32 )
 atlas = ExtResource( 4 )
 region = Rect2( 160, 0, 32, 32 )
 
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 7 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 7 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 7 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 7 )
+region = Rect2( 128, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 7 )
+region = Rect2( 160, 0, 32, 32 )
+
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 32, 32 )
@@ -63,30 +87,6 @@ region = Rect2( 160, 0, 32, 32 )
 atlas = ExtResource( 5 )
 region = Rect2( 192, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 7 )
-region = Rect2( 32, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 7 )
-region = Rect2( 64, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 7 )
-region = Rect2( 96, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 7 )
-region = Rect2( 128, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=20]
-atlas = ExtResource( 7 )
-region = Rect2( 160, 0, 32, 32 )
-
 [sub_resource type="AtlasTexture" id=21]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 32, 32 )
@@ -110,6 +110,11 @@ animations = [ {
 "name": "idle",
 "speed": 6.0
 }, {
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
+"loop": true,
+"name": "ninja",
+"speed": 6.0
+}, {
 "frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
 "loop": true,
 "name": "jumping",
@@ -119,11 +124,6 @@ animations = [ {
 "loop": true,
 "name": "inJump",
 "speed": 5.0
-}, {
-"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
-"loop": true,
-"name": "Ninja",
-"speed": 6.0
 }, {
 "frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
 "loop": true,
@@ -175,14 +175,10 @@ pitch_scale = 0.7
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Pointer"]
 scale = Vector2( 2.5, 2.5 )
 frames = SubResource( 25 )
-animation = "inJump"
+animation = "ninja"
+frame = 1
 playing = true
 
 [node name="Timer" type="Timer" parent="Pointer"]
 wait_time = 0.25
 one_shot = true
-
-[node name="Ninja_Mode" type="Timer" parent="Pointer"]
-wait_time = 5.0
-one_shot = true
-[connection signal="timeout" from="Pointer/Ninja_Mode" to="." method="_on_Ninja_Mode_timeout"]

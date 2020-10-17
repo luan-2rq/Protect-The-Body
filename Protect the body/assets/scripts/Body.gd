@@ -36,19 +36,19 @@ func clean(damage):
 func on_canvas_animation_finished(AnimName):
 	$CanvasLayer.call_deferred("free")
 
-func fruit_ninja():
+func ninja():
 	Global.ninja = true
 	$Timer.start()
-	
+
 func _process(_delta):
 	if self.has_node("Pointer"):
 		emit_signal("pointer_on_body")
 	
-	if Global.ninja:
-		for x in get_tree().get_nodes_in_group("enemy"):
-			if not x.has_node("Pointer"):
-				x.set_deferred("fruit_ninja_power_up", true)
-			else: x.set_deferred("fruit_ninja_power_up", false)
+	#if Global.ninja:
+	#	for x in get_tree().get_nodes_in_group("enemy"):
+	#		if not x.has_node("Pointer"):
+	#			x.set_deferred("fruit_ninja_power_up", true)
+	#		else: x.set_deferred("fruit_ninja_power_up", false)
 	
 func _on_Timer_timeout():
 	Global.ninja = false

@@ -28,7 +28,7 @@ func clean(damage):
 	for enemy in get_tree().get_nodes_in_group("enemy"):
 			if damage:
 				$CanvasLayer/AnimationPlayer.play("Pulse")
-				enemy.call_deferred("free")
+				enemy.die(0)
 			else:
 				$CanvasLayer/AnimationPlayer.play("Clean")
 				enemy.die()

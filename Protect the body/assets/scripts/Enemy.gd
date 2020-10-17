@@ -18,6 +18,7 @@ var ang
 var amp
 var t = 0
 var theta = 0
+var points_mult
 
 signal die
 
@@ -92,11 +93,12 @@ func parametric_function(state, delta):
 		6:
 			return Vector2(10*t,100.0*4.0/10 *(t-10/2.0 * floor(2.0*t/10 + 0.5))*pow(-1,floor(2.0*t/10 + 0.5)))
 
-func die():
+func die(mult = 1):
 	$AudioStreamPlayer2D.playing = true
 	$Area2D.call_deferred("free")
 	$AnimationPlayer.play("die")
 	
+	points_mult = mult
 	var points = preload("res://assets/HUD/Points/Point animation.tscn").instance()
 	add_child(points)
 	points.get_node("AnimationPlayer").connect("animation_finished", self, "_on_Points_Animation_finished")

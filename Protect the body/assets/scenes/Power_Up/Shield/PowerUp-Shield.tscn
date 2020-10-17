@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/sprites/PowerUp-Shield.png" type="Texture" id=1]
 [ext_resource path="res://assets/scripts/Base_PowerUp.gd" type="Script" id=2]
-[ext_resource path="res://assets/scenes/Power_Up/Animation/Rotate.tres" type="Animation" id=3]
 [ext_resource path="res://assets/sprites/circleShield.png" type="Texture" id=5]
 
 [sub_resource type="Gradient" id=1]
@@ -47,11 +46,6 @@ texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 4 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Power_UpRotate = ExtResource( 3 )
-anims/Rotate = ExtResource( 3 )
-anims/Rotation = ExtResource( 3 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0

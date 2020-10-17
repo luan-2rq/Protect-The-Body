@@ -1,0 +1,101 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/scripts/Fat.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/fat.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 512.08, 360 )
+
+[node name="Fat" type="Node2D"]
+script = ExtResource( 1 )
+speed = 10
+
+[node name="Left" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="Left"]
+cast_to = Vector2( 0, 0 )
+
+[node name="Sprite" type="Sprite" parent="Left"]
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 0, 720 )
+
+[node name="Area2D" type="Area2D" parent="Left"]
+position = Vector2( 0, 360 )
+scale = Vector2( 1e-05, 1 )
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left/Area2D"]
+shape = SubResource( 13 )
+
+[node name="Right" type="Node2D" parent="."]
+position = Vector2( 1024, 0 )
+
+[node name="RayCast2D" type="RayCast2D" parent="Right"]
+cast_to = Vector2( 0, 0 )
+
+[node name="Sprite" type="Sprite" parent="Right"]
+position = Vector2( 0, 720 )
+rotation = 3.14159
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 0, 720 )
+
+[node name="Area2D" type="Area2D" parent="Right"]
+position = Vector2( 0, 360 )
+scale = Vector2( 1e-05, 1 )
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right/Area2D"]
+shape = SubResource( 13 )
+
+[node name="Up" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="Up"]
+cast_to = Vector2( 0, 0 )
+
+[node name="Sprite" type="Sprite" parent="Up"]
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1024, 0 )
+
+[node name="Area2D" type="Area2D" parent="Up"]
+position = Vector2( 512, 0 )
+scale = Vector2( 1, 1e-05 )
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Up/Area2D"]
+shape = SubResource( 13 )
+
+[node name="Down" type="Node2D" parent="."]
+position = Vector2( 0, 720 )
+
+[node name="RayCast2D" type="RayCast2D" parent="Down"]
+cast_to = Vector2( 0, 0 )
+
+[node name="Sprite" type="Sprite" parent="Down"]
+position = Vector2( 1024, 0 )
+rotation = 3.14159
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1024, 0 )
+
+[node name="Area2D" type="Area2D" parent="Down"]
+position = Vector2( 512, 0 )
+scale = Vector2( 1, 1e-05 )
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Down/Area2D"]
+shape = SubResource( 13 )
+[connection signal="body_entered" from="Left/Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Right/Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Up/Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Down/Area2D" to="." method="_on_Area2D_body_entered"]

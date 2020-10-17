@@ -9,7 +9,7 @@
 [ext_resource path="res://assets/sprites/HeroNinja.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 23.6624, 41.8406 )
+extents = Vector2( 23.6624, 39.9492 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 4 )
@@ -64,44 +64,44 @@ atlas = ExtResource( 5 )
 region = Rect2( 192, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 1 )
+atlas = ExtResource( 7 )
 region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 1 )
+atlas = ExtResource( 7 )
 region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 1 )
+atlas = ExtResource( 7 )
 region = Rect2( 64, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 1 )
+atlas = ExtResource( 7 )
 region = Rect2( 96, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=19]
 atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 32, 32 )
+region = Rect2( 128, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=20]
 atlas = ExtResource( 7 )
-region = Rect2( 32, 0, 32, 32 )
+region = Rect2( 160, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=21]
-atlas = ExtResource( 7 )
-region = Rect2( 64, 0, 32, 32 )
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=22]
-atlas = ExtResource( 7 )
-region = Rect2( 96, 0, 32, 32 )
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=23]
-atlas = ExtResource( 7 )
-region = Rect2( 128, 0, 32, 32 )
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=24]
-atlas = ExtResource( 7 )
-region = Rect2( 160, 0, 32, 32 )
+atlas = ExtResource( 1 )
+region = Rect2( 96, 0, 32, 32 )
 
 [sub_resource type="SpriteFrames" id=25]
 animations = [ {
@@ -115,20 +115,20 @@ animations = [ {
 "name": "jumping",
 "speed": 28.0
 }, {
-"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
-"loop": true,
-"name": "walk",
-"speed": 10.0
-}, {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "inJump",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
 "loop": true,
 "name": "Ninja",
 "speed": 6.0
+}, {
+"frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
+"loop": true,
+"name": "walk",
+"speed": 10.0
 } ]
 
 [node name="Root" type="Node2D"]
@@ -140,6 +140,8 @@ rotation_speed = 5
 [node name="Pointer" type="KinematicBody2D" parent="."]
 position = Vector2( 0, -80 )
 scale = Vector2( 0.7, 0.7 )
+collision_layer = 9
+collision_mask = 9
 
 [node name="RayCast2D" type="RayCast2D" parent="Pointer"]
 enabled = true
@@ -173,7 +175,7 @@ pitch_scale = 0.7
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Pointer"]
 scale = Vector2( 2.5, 2.5 )
 frames = SubResource( 25 )
-animation = "Ninja"
+animation = "inJump"
 playing = true
 
 [node name="Timer" type="Timer" parent="Pointer"]

@@ -95,9 +95,8 @@ func parametric_function(state, delta):
 
 func die(mult = 1):
 	$AudioStreamPlayer2D.playing = true
-	$Area2D.call_deferred("free")
+	$Area2D.call_deferred("free") #buga algumas vezes
 	$AnimationPlayer.play("die")
-	
 	points_mult = mult
 	var points = preload("res://assets/HUD/Points/Point animation.tscn").instance()
 	add_child(points)
@@ -109,6 +108,7 @@ func die(mult = 1):
 	$CollisionShape2D.disabled = true
 	$CPUParticles2D.visible = false
 	set_physics_process(false)
+
 
 func _on_Points_Animation_finished(IDLE):
 	call_deferred("free")

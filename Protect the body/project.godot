@@ -9,6 +9,21 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "CanvasLayer",
+"class": "BlockingDialogBox",
+"language": "GDScript",
+"path": "res://addons/blocking_dialog_box/blocking_dialog_box.gd"
+}, {
+"base": "CanvasLayer",
+"class": "BlockingInputBox",
+"language": "GDScript",
+"path": "res://addons/blocking_dialog_box/blocking_input_box.gd"
+}, {
+"base": "CanvasLayer",
+"class": "BlockingListSelection",
+"language": "GDScript",
+"path": "res://addons/blocking_dialog_box/blocking_list_selection.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Enemy",
 "language": "GDScript",
@@ -20,6 +35,9 @@ _global_script_classes=[ {
 "path": "res://assets/scripts/Base_PowerUp.gd"
 } ]
 _global_script_class_icons={
+"BlockingDialogBox": "",
+"BlockingInputBox": "",
+"BlockingListSelection": "",
 "Enemy": "",
 "PowerUp": ""
 }
@@ -27,7 +45,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Protect the body"
-run/main_scene="res://assets/scenes/MainScene.tscn"
+run/main_scene="res://assets/scenes/Menu/Main_Menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]

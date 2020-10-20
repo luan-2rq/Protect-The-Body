@@ -3,8 +3,12 @@ extends Control
 export(PackedScene) var heart_stage_scene
 export(Texture) var arrow
 
+var x:  BlockingDialogBox
+
 func _ready():
 	Input.set_custom_mouse_cursor(arrow)
+	x = get_node("/root/Main_Menu/Dialog")
+	x.append_text("My chest is hurting help me [rainbow] player [/rainbow]!!!!!!!!!!!!",30)
 
 func _on_Heart_Area_mouse_entered():
 	$Heart/AnimationPlayer.play("Showing")

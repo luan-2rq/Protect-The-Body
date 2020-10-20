@@ -5,11 +5,11 @@
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
 shader_param/center = Vector2( 0.5, 0.5 )
-shader_param/force = 1.0
-shader_param/size = 0.0
+shader_param/force = 0.0
+shader_param/size = 1.0
 shader_param/thickness = 0.05
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "Clean"
 step = 0.0
 tracks/0/type = "value"
@@ -49,8 +49,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.921569, 0, 1, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Clean"
+[sub_resource type="Animation" id=3]
 step = 0.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:material:shader_param/force")
@@ -101,5 +100,5 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Clean = SubResource( 3 )
-anims/Pulse = SubResource( 2 )
+anims/Clean = SubResource( 2 )
+anims/Pulse = SubResource( 3 )

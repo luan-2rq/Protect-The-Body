@@ -1,5 +1,8 @@
 extends Node2D
 
+export(PackedScene)var wave1_scene
+export(PackedScene)var powerups_scene
+
 export(PackedScene)var enemy1_scene
 export(PackedScene)var enemy2_scene
 export(PackedScene)var enemy4_scene
@@ -30,6 +33,13 @@ func _ready():
 	var points_box = points_scene.instance()
 	var powerup_text = poweruptext_scene.instance()
 	var combo = combo_scene.instance()
+	var cur_wave = wave1_scene.instance()
+	var powerups_manager = powerups_scene.instance()
+	
+	cur_wave.set_name("Wave")
+	cur_wave.connect("wave_end", self, "_on_wave_end")
+	
+	powerups_manager.set_name("Pup_manager")
 	
 	combo.set_name("Combo")
 	combo.rect_position.x = 400
@@ -40,8 +50,8 @@ func _ready():
 	powerup_text.set_name("PowerUp_Text")
 	powerup_text.rect_position.y = 192
 	
-	$Enemy_spawning.start()
-	$PowerUp_spawning.start()
+	#$Enemy_spawning.start()
+#	$PowerUp_spawning.start()
 	
 	hp_box.set_name("HP")
 	hp_box._setup($Body)
@@ -61,57 +71,64 @@ func _ready():
 	self.add_child(points_box)
 	self.add_child(powerup_text)
 	self.add_child(combo)
+	self.add_child(cur_wave)
+	self.add_child(powerups_manager)
 	
 	get_tree().paused = false
 	$Tween.interpolate_property($Camera2D, "zoom", $Camera2D.zoom, Vector2(1, 1), 1)
 	$Tween.start()
-
-func _on_Enemy_spawning_timeout():
-	enemy = rng.randi_range(1,3)
-	match enemy:
-		1:
-			enemy_scene = enemy1_scene.instance()
-		2:
-			enemy_scene = enemy2_scene.instance()
-		3:
-			enemy_scene = enemy4_scene.instance()
-	enemy_scene.connect("die", self, "on_Enemy_die")
-	add_child(enemy_scene)
 	
-	$Enemy_spawning.wait_time -= 0.02
+	$Pup_manager._start()
+
+#func _on_Enemy_spawning_timeout():
+#	enemy = rng.randi_range(1,3)
+#	match enemy:
+#		1:
+#			enemy_scene = enemy1_scene.instance()
+#		2:
+#			enemy_scene = enemy2_scene.instance()
+#		3:
+#			enemy_scene = enemy4_scene.instance()
+#	enemy_scene.connect("die", self, "on_Enemy_die")
+#	add_child(enemy_scene)
+#
+#	$Enemy_spawning.wait_time -= 0.02
 
 func on_Enemy_7_created_enemy(sun):
 	add_child(sun)
 
-func _on_PowerUp_spawning_timeout():
-	powerup = rng.randi_range(1, 5)
-	match powerup:
-		1:
-			powerup_scene = powerup1_scene.instance()
-		2:
-			powerup_scene = powerup2_scene.instance()
-		3:
-			powerup_scene = powerup3_scene.instance()
-		4:
-			powerup_scene = powerup4_scene.instance()
-		5:
-			powerup_scene = powerup5_scene.instance()
-	powerup_scene.connect("collected", self, "on_PowerUp_collected")
-	add_child(powerup_scene)
+#func _on_PowerUp_spawning_timeout():
+#	powerup = rng.randi_range(3, 5)
+#	match powerup:
+#		1:
+#			powerup_scene = powerup1_scene.instance()
+#		2:
+#			powerup_scene = powerup2_scene.instance()
+#		3:
+#			powerup_scene = powerup3_scene.instance()
+#			powerup_scene._setup("in_wave", Vector2.ZERO)
+#		4:
+#			powerup_scene = powerup4_scene.instance()
+#			powerup_scene._setup("in_wave", Vector2.ZERO)
+#		5:
+#			powerup_scene = powerup5_scene.instance()
+#			powerup_scene._setup("in_wave", Vector2.ZERO)
+#	powerup_scene.connect("collected", self, "on_PowerUp_collected")
+#	add_child(powerup_scene)
 
-func on_PowerUp_collected():
+func on_PowerUp_collected(powerup):
 	match powerup:
 		1:
 			pointer.get_node("Pointer").scale += Vector2(0.2, 0.2)
 			pointer.get_node("Pointer").position.y -= 16
 			$PowerUp_Text/Label.text = "GROW UP"
 		2:
-			$Body.clean(false)
-			$PowerUp_Text/Label.text = "CLEAN UP"
-		3:
 			$Body.lifes = $Body.max_lifes
 			$HP._setup($Body)
 			$PowerUp_Text/Label.text = "RESTORE"
+		3:
+			$Body.clean(false)
+			$PowerUp_Text/Label.text = "CLEAN UP"
 		4:
 			if self.has_node("Shield"):
 				$Shield.call_deferred("free")
@@ -129,6 +146,7 @@ func on_PowerUp_collected():
 func on_Enemy_die():
 	$Points_Box._update_points(100 * ($Combo.counter + 1))
 	$Combo._update_mult()
+	$Wave._update(true)
 
 func _on_damage_taken():
 	$Combo._reset_mult()
@@ -138,3 +156,7 @@ func _pointer_on_body():
 
 func _on_pointer_death():
 	get_tree().paused = true
+
+func _on_wave_end():
+	$Pup_manager.get_node("Spawn").stop()
+	$Pup_manager._end_wave()

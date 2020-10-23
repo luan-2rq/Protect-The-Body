@@ -39,7 +39,7 @@ func _physics_process(delta):
 	
 	if Global.ninja:
 		respawn()
-		$Pointer/AnimatedSprite.play("Ninja")
+		$Pointer/AnimatedSprite.play("ninja")
 
 	if !$Pointer/VisibilityNotifier2D.is_on_screen() && is_moving:
 		respawn()

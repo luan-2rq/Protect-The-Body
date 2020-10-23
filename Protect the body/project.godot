@@ -33,13 +33,19 @@ _global_script_classes=[ {
 "class": "PowerUp",
 "language": "GDScript",
 "path": "res://assets/scripts/Base_PowerUp.gd"
+}, {
+"base": "Node2D",
+"class": "Wave",
+"language": "GDScript",
+"path": "res://assets/scripts/ClassWave.gd"
 } ]
 _global_script_class_icons={
 "BlockingDialogBox": "",
 "BlockingInputBox": "",
 "BlockingListSelection": "",
 "Enemy": "",
-"PowerUp": ""
+"PowerUp": "",
+"Wave": ""
 }
 
 [application]

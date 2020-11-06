@@ -9,6 +9,8 @@ func _ready():
 	Input.set_custom_mouse_cursor(arrow)
 	x = get_node("/root/Main_Menu/Dialog")
 	x.append_text("My chest is hurting help me [rainbow] player [/rainbow]!!!!!!!!!!!!",30)
+	get_tree().paused = not get_tree().paused
+	
 
 func _on_Heart_Area_mouse_entered():
 	$Heart/AnimationPlayer.play("Showing")

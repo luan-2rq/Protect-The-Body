@@ -85,6 +85,7 @@ func _input(event):
 	if event is InputEventMouseButton or event is InputEventScreenTouch:
 		if event.pressed:
 			capture_input()
+			get_tree().paused = not get_tree().paused
 		# do not let a rogue release event propagate
 		else:
 			get_tree().set_input_as_handled()
@@ -119,7 +120,7 @@ func show_box():
 	# this is the code to load a font and use it
 	var dynamic_font = DynamicFont.new()
 	dynamic_font.font_data = load(
-		"res://addons/blocking_dialog_box/NotoSansCJKsc-Regular.otf"
+		"res://assets/fonts/NovaSquare-Regular.ttf"
 		)
 	dynamic_font.size = 18
 	label.set("custom_fonts/normal_font", dynamic_font)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://assets/scenes/pointer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/organHeart.png" type="Texture" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://assets/scripts/stage_controller.gd" type="Script" id=4]
 [ext_resource path="res://assets/scenes/Enemy_4.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/scenes/CanvasCleanWave.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/scenes/Pivot.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/audio/músicas/Cardiac-Arrest.ogg" type="AudioStream" id=8]
 [ext_resource path="res://assets/scenes/Enemy_1.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/sprites/bg-heart-heartless.jpg" type="Texture" id=10]
@@ -116,7 +115,7 @@ texture = ExtResource( 11 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Body"]
 scale = Vector2( 2, 2 )
 frames = SubResource( 10 )
-frame = 4
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
@@ -133,10 +132,6 @@ wait_time = 5.0
 
 [node name="Enemy_spawning" type="Timer" parent="."]
 wait_time = 2.0
-
-[node name="Pivot" parent="." instance=ExtResource( 7 )]
-position = Vector2( 286.99, 225.588 )
-rotation = -0.619592
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )

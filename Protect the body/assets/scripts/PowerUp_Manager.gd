@@ -13,12 +13,16 @@ var rng = RandomNumberGenerator.new()
 func _start():
 	$Spawn.start()
 
+func _stop():
+	$Spawn.stop()
+
 func _end_wave():
 	var powerup1 = powerup1_scene.instance()
 	var powerup2 = powerup2_scene.instance()
 	
 	for i in get_children():
-		i.call_deferred("free")
+		if i.is_in_group("body"):
+			i.call_deferred("free")
 	
 	powerup1.set_name("Grow")
 	powerup2.set_name("Restore")
@@ -29,7 +33,6 @@ func _end_wave():
 	
 	self.add_child(powerup1)
 	self.add_child(powerup2)
-
 
 func _on_Spawn_timeout():
 	var powerup_scene
@@ -48,3 +51,5 @@ func _on_Spawn_timeout():
 	
 	powerup_scene.connect("collected", get_parent(), "on_PowerUp_collected", [powerup])
 	self.add_child(powerup_scene)
+	
+	$Spawn.start()

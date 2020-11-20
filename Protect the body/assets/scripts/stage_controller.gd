@@ -26,17 +26,44 @@ var rng = RandomNumberGenerator.new()
 var enemy
 var powerup
 
+var waves       : Array = []
+var waves_name  : Array = []
+var change_wave : bool  = false
+
 export(PackedScene)var fruit_ninja_trail_scene
 
 func _ready():
+	### Instancing scenes
 	var hp_box = hp_scene.instance()
 	var points_box = points_scene.instance()
 	var powerup_text = poweruptext_scene.instance()
 	var combo = combo_scene.instance()
-	var cur_wave = wave1_scene.instance()
 	var powerups_manager = powerups_scene.instance()
+	var cur_wave
 	
-	cur_wave.set_name("Wave")
+	### Variables to open directory
+	var path        : String    = ""
+	var dir         : Directory = Directory.new()
+	var total_waves : int       = 0
+	
+	### Get waves' scenes
+	path = "res://assets/scenes/Waves/"
+	
+	if dir.open(path) == OK:
+		dir.list_dir_begin(true, true)
+		var file_name : String = dir.get_next()
+		while file_name != "":
+			total_waves += 1
+			waves.append(path + file_name)
+			waves_name.append(file_name.rstrip(".tscn"))
+			file_name = dir.get_next()
+	else:
+		print("Error opening Waves folder")
+	
+	dir.list_dir_end()
+	
+	### Setting up instanced scenes
+	cur_wave = load(waves[0]).instance()
 	cur_wave.connect("wave_end", self, "_on_wave_end")
 	
 	powerups_manager.set_name("Pup_manager")
@@ -71,8 +98,10 @@ func _ready():
 	self.add_child(points_box)
 	self.add_child(powerup_text)
 	self.add_child(combo)
-	self.add_child(cur_wave)
 	self.add_child(powerups_manager)
+	self.add_child(cur_wave)
+	
+	waves.pop_front()
 	
 	get_tree().paused = false
 	$Tween.interpolate_property($Camera2D, "zoom", $Camera2D.zoom, Vector2(1, 1), 1)
@@ -142,11 +171,31 @@ func on_PowerUp_collected(powerup):
 			$Body.ninja()
 			$PowerUp_Text/Label.text = "NINJA"
 	$PowerUp_Text/AnimationPlayer.play("show_powerup")
+	
+	for i in $Pup_manager.get_children():
+		if i.is_in_group("powerupend"):
+			i.call_deferred("free")
+			
+			if change_wave:
+				get_node(waves_name[0]).call_deferred("free")
+				
+				var cur_wave = load(waves[0]).instance()
+				
+				cur_wave.connect("wave_end", self, "_on_wave_end")
+				
+				self.add_child(cur_wave)
+				
+				waves.pop_front()
+				waves_name.pop_front()
+				
+				change_wave = false
+				
+				$Pup_manager._start()
 
 func on_Enemy_die():
 	$Points_Box._update_points(100 * ($Combo.counter + 1))
 	$Combo._update_mult()
-	$Wave._update(true)
+	get_node(waves_name[0])._update(true)
 
 func _on_damage_taken():
 	$Combo._reset_mult()
@@ -158,5 +207,7 @@ func _on_pointer_death():
 	get_tree().paused = true
 
 func _on_wave_end():
-	$Pup_manager.get_node("Spawn").stop()
+	$Pup_manager._stop()
 	$Pup_manager._end_wave()
+	
+	change_wave = true

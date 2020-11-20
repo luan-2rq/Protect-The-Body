@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/scripts/Wave1.gd" type="Script" id=1]
+[ext_resource path="res://assets/HUD/Wave_End/Wave_Anim.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/scenes/Enemy_1.tscn" type="PackedScene" id=6]
+
+[node name="Wave1" type="Node2D"]
+script = ExtResource( 1 )
+wave_change_scene = ExtResource( 2 )
+enemy1_scene = ExtResource( 6 )
+
+[node name="Enemy1_spawn" type="Timer" parent="."]
+wait_time = 2.5
+[connection signal="timeout" from="Enemy1_spawn" to="." method="_on_Enemy1_spawn_timeout"]

@@ -5,7 +5,7 @@
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 0 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "Panel_hide"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Panel:custom_styles/panel:bg_color")
@@ -32,8 +32,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Panel_show"
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Panel:custom_styles/panel:bg_color")
 tracks/0/interp = 1
@@ -88,8 +87,8 @@ __meta__ = {
 }
 
 [node name="Anim" type="AnimationPlayer" parent="."]
-anims/Panel_hide = SubResource( 3 )
-anims/Panel_show = SubResource( 2 )
+anims/Panel_hide = SubResource( 2 )
+anims/Panel_show = SubResource( 3 )
 
 [node name="Box" type="VBoxContainer" parent="."]
 margin_left = 332.0

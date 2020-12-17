@@ -198,6 +198,7 @@ func on_Enemy_die():
 	get_node(waves_name[0])._update(true)
 
 func _on_damage_taken():
+	$HP._on_damage()
 	$Combo._reset_mult()
 
 func _pointer_on_body():

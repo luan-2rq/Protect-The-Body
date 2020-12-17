@@ -10,7 +10,7 @@ var acel
 var vetor = Vector2()
 var plain
 var side
-var pos = Vector2()
+var initPos = Vector2()
 var state
 var raio
 var M
@@ -34,34 +34,34 @@ func _ready():
 	match plain:
 		1:
 			if side == 0:
-				pos.x = rng.randf_range(0,resolution.x/2.0)
-				pos.y = -20
+				initPos.x = rng.randf_range(0,resolution.x/2.0)
+				initPos.y = -20
 			else:
-				pos.x = -20
-				pos.y = rng.randf_range(0,resolution.y/2.0)
+				initPos.x = -20
+				initPos.y = rng.randf_range(0,resolution.y/2.0)
 		2:
 			if side == 0:
-				pos.x = rng.randf_range(resolution.x/2.0,resolution.x)
-				pos.y = -20
+				initPos.x = rng.randf_range(resolution.x/2.0,resolution.x)
+				initPos.y = -20
 			else:
-				pos.x = resolution.x + 20.0
-				pos.y = rng.randf_range(resolution.y/2.0,resolution.y)
+				initPos.x = resolution.x + 20.0
+				initPos.y = rng.randf_range(resolution.y/2.0,resolution.y)
 		3:
 			if side == 0:
-				pos.x = rng.randf_range(0,resolution.x/2.0)
-				pos.y = resolution.y + 20
+				initPos.x = rng.randf_range(0,resolution.x/2.0)
+				initPos.y = resolution.y + 20
 			else:
-				pos.x = -20
-				pos.y = rng.randf_range(resolution.y/2.0,resolution.y)
+				initPos.x = -20
+				initPos.y = rng.randf_range(resolution.y/2.0,resolution.y)
 		4:
 			if side == 0:
-				pos.x = rng.randf_range(resolution.x/2.0,resolution.x)
-				pos.y = resolution.y + 20
+				initPos.x = rng.randf_range(resolution.x/2.0,resolution.x)
+				initPos.y = resolution.y + 20
 			else:
-				pos.x = resolution.x + 20
-				pos.y = rng.randf_range(resolution.y/2.0,resolution.y)
+				initPos.x = resolution.x + 20
+				initPos.y = rng.randf_range(resolution.y/2.0,resolution.y)
 	
-	self.position = pos
+	self.position = initPos
 	vetor = (resolution/2.0 - self.position).normalized()
 	acel = vetor*(speed)
 	
@@ -104,11 +104,12 @@ func die(mult = 1):
 	points.get_node("AnimationPlayer").play("IDLE")
 	
 	emit_signal("die")
-	#$Sprite.visible = false
-	$CollisionShape2D.disabled = true
-	$CPUParticles2D.visible = false
+	$CollisionShape2D.set_deferred("disabled", true)
+	$CPUParticles2D.set_deferred("visible", false)
 	set_physics_process(false)
 
+func _restart():
+	self.position = initPos
 
 func _on_Points_Animation_finished(IDLE):
 	call_deferred("free")

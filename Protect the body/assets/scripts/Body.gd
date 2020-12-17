@@ -11,12 +11,13 @@ signal pointer_on_body()
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("enemy"):
+		body.add_to_group("enemy_hit")
 		emit_signal("damage")
 		var pointer = get_parent().pointer
 		pointer.respawn()
 		clean(true)
 
-func clean(damage):
+func clean(damage : bool):
 	Global.ninja = false
 	$Timer.stop()
 	for x in get_tree().get_nodes_in_group("trail"):
@@ -25,14 +26,20 @@ func clean(damage):
 	canvas = canvas_scene.instance()
 	canvas.get_node("AnimationPlayer").connect("animation_finished", self, "on_canvas_animation_finished")
 	add_child(canvas)
-	for enemy in get_tree().get_nodes_in_group("enemy"):
-			if damage:
-				$CanvasLayer/AnimationPlayer.play("Pulse")
-				enemy.die(0)
-			else:
-				$CanvasLayer/AnimationPlayer.play("Clean")
-				enemy.die()
+	
+	### Dealing with enemy that will die
+	var enemies   : Array
+	
+	enemies = get_tree().get_nodes_in_group("enemy")
+	for enemy in enemies:
+		if damage and enemy.is_in_group("enemy_hit"):
+			$CanvasLayer/AnimationPlayer.play("Pulse")
+			enemy.die()
+		else:
+			$CanvasLayer/AnimationPlayer.play("Clean")
+			enemy._restart()
 
+# warning-ignore:unused_argument
 func on_canvas_animation_finished(AnimName):
 	$CanvasLayer.call_deferred("free")
 

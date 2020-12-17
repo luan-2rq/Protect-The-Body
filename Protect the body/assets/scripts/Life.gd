@@ -2,24 +2,20 @@ extends VBoxContainer
 
 export(PackedScene) var heart_scene
 
-var sprites : Array = []
-var organ : KinematicBody2D
-var hp : int
-var level : int = 0
-var path : String = ""
+var sprites  : Array           = []
+var organ    : KinematicBody2D
+var hp       : int
+var level    : int             = 0
 
 signal dead()
 
 func _setup(body : KinematicBody2D):
 	organ = body
 	# warning-ignore:return_value_discarded
-	organ.connect("damage", self, "_on_damage")
 	hp = organ.max_lifes
 	
-	path = "res://assets/HUD/Sprites/Level" + str(level) + ".png"
-	
 	for i in self.get_children():
-		i.call_deferred("free")
+		i.free()
 	
 	for i in range(hp):
 		var hp_sprite = heart_scene.instance()

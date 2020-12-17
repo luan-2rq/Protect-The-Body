@@ -82,7 +82,7 @@ func respawn():
 	is_moving = false
 	
 	get_parent().remove_child(self)
-	main_body.add_child(self)
+	main_body.call_deferred("add_child", self)
 	current_body = main_body
 	
 	position = Vector2(0, 0)

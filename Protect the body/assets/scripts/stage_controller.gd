@@ -195,7 +195,7 @@ func on_PowerUp_collected(powerup):
 func on_Enemy_die():
 	$Points_Box._update_points(100 * ($Combo.counter + 1))
 	$Combo._update_mult()
-	get_node(waves_name[0])._update(true)
+	get_node(waves_name[0])._update()
 
 func _on_damage_taken():
 	$HP._on_damage()

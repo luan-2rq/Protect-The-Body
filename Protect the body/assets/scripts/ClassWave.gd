@@ -45,14 +45,20 @@ var end : bool = false
 
 signal wave_end
 
+func _get_enemies() -> Array:
+	return [enemy1_init, enemy2_init, enemy3_init, enemy4_init, enemy5_init, enemy6_init, enemy7_init]
+
 func _process(_delta):
+	var enemiesPercentage = (float(total_dead)/total_enem)*100
+	
+	$ProgressBar.value = enemiesPercentage
+	
 	if (total_enem == total_dead) and not end:
 		emit_signal("wave_end")
 		end = true
 
-func _update(dead : bool):
-	if dead:
-		total_dead += 1
+func _update():
+	total_dead += 1
 
 func _change(wave_num : int):
 	var wave_change = wave_change_scene.instance()

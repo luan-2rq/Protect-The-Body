@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/scripts/Fat.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/fat.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=13]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 512.08, 360 )
 
 [node name="Fat" type="Node2D"]
@@ -11,9 +11,6 @@ script = ExtResource( 1 )
 speed = 10
 
 [node name="Left" type="Node2D" parent="."]
-
-[node name="RayCast2D" type="RayCast2D" parent="Left"]
-cast_to = Vector2( 0, 0 )
 
 [node name="Sprite" type="Sprite" parent="Left"]
 texture = ExtResource( 2 )
@@ -28,13 +25,10 @@ collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left/Area2D"]
-shape = SubResource( 13 )
+shape = SubResource( 1 )
 
 [node name="Right" type="Node2D" parent="."]
 position = Vector2( 1024, 0 )
-
-[node name="RayCast2D" type="RayCast2D" parent="Right"]
-cast_to = Vector2( 0, 0 )
 
 [node name="Sprite" type="Sprite" parent="Right"]
 position = Vector2( 0, 720 )
@@ -51,12 +45,9 @@ collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right/Area2D"]
-shape = SubResource( 13 )
+shape = SubResource( 1 )
 
 [node name="Up" type="Node2D" parent="."]
-
-[node name="RayCast2D" type="RayCast2D" parent="Up"]
-cast_to = Vector2( 0, 0 )
 
 [node name="Sprite" type="Sprite" parent="Up"]
 texture = ExtResource( 2 )
@@ -71,13 +62,10 @@ collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Up/Area2D"]
-shape = SubResource( 13 )
+shape = SubResource( 1 )
 
 [node name="Down" type="Node2D" parent="."]
 position = Vector2( 0, 720 )
-
-[node name="RayCast2D" type="RayCast2D" parent="Down"]
-cast_to = Vector2( 0, 0 )
 
 [node name="Sprite" type="Sprite" parent="Down"]
 position = Vector2( 1024, 0 )
@@ -94,7 +82,7 @@ collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Down/Area2D"]
-shape = SubResource( 13 )
+shape = SubResource( 1 )
 [connection signal="body_entered" from="Left/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Right/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Up/Area2D" to="." method="_on_Area2D_body_entered"]

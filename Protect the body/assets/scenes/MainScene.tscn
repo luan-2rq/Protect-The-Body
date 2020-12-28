@@ -25,7 +25,6 @@
 [ext_resource path="res://assets/scenes/Waves/Wave1.tscn" type="PackedScene" id=24]
 [ext_resource path="res://assets/scenes/PowerUp_Manager.tscn" type="PackedScene" id=25]
 
-
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 32, 32 )
@@ -116,8 +115,6 @@ texture = ExtResource( 11 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Body"]
 scale = Vector2( 2, 2 )
 frames = SubResource( 10 )
-frame = 2
-playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
 shape = SubResource( 11 )

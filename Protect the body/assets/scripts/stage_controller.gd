@@ -108,6 +108,8 @@ func _ready():
 	$Tween.start()
 	
 	$Pup_manager._start()
+	
+	$Body/AnimatedSprite.play()
 
 #func _on_Enemy_spawning_timeout():
 #	enemy = rng.randi_range(1,3)

@@ -14,9 +14,11 @@ func _ready():
 
 func _on_Heart_Area_mouse_entered():
 	$Heart/AnimationPlayer.play("Showing")
+	$Heart/Heart_Animation.play()
 
 func _on_Heart_Area_mouse_exited():
 	$Heart/AnimationPlayer.play("Disappearing")
+	$Heart/Heart_Animation.stop()
 
 func _transition():
 	$Heart/Heart_Bg.modulate.a = 1

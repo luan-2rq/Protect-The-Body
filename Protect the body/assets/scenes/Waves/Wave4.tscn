@@ -10,10 +10,10 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 512.08, 360 )
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.0901961, 1, 0, 1 )
 
-[sub_resource type="StyleBoxEmpty" id=2]
+[sub_resource type="StyleBoxEmpty" id=3]
 
 [node name="Wave4" type="Node2D"]
 script = ExtResource( 3 )
@@ -106,8 +106,8 @@ margin_left = 320.0
 margin_top = 672.0
 margin_right = 704.0
 margin_bottom = 686.0
-custom_styles/fg = SubResource( 3 )
-custom_styles/bg = SubResource( 2 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

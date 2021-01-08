@@ -63,6 +63,7 @@ func _ready():
 	dir.list_dir_end()
 	
 	### Setting up instanced scenes
+	waves.sort()
 	cur_wave = load(waves[0]).instance()
 	cur_wave.connect("wave_end", self, "_on_wave_end")
 	
@@ -101,6 +102,7 @@ func _ready():
 	self.add_child(powerups_manager)
 	self.add_child(cur_wave)
 	
+	print(waves)
 	waves.pop_front()
 	
 	get_tree().paused = false

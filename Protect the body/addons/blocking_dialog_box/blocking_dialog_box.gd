@@ -85,7 +85,7 @@ func _input(event):
 	if event is InputEventMouseButton or event is InputEventScreenTouch:
 		if event.pressed:
 			capture_input()
-			get_tree().paused = not get_tree().paused
+			#get_tree().paused = not get_tree().paused
 		# do not let a rogue release event propagate
 		else:
 			get_tree().set_input_as_handled()

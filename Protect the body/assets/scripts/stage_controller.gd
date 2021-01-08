@@ -102,7 +102,6 @@ func _ready():
 	self.add_child(powerups_manager)
 	self.add_child(cur_wave)
 	
-	print(waves)
 	waves.pop_front()
 	
 	get_tree().paused = false

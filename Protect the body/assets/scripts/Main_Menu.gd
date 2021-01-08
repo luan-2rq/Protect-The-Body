@@ -3,14 +3,14 @@ extends Control
 export(PackedScene) var heart_stage_scene
 export(Texture) var arrow
 
-var x:  BlockingDialogBox
+var dialog :  BlockingDialogBox
 
 func _ready():
+	$Heart_Area/CollisionShape2D.disabled = true
 	Input.set_custom_mouse_cursor(arrow)
-	x = get_node("/root/Main_Menu/Dialog")
-	x.append_text("My chest is hurting help me [rainbow] player [/rainbow]!!!!!!!!!!!!",30)
-	get_tree().paused = not get_tree().paused
-	
+	dialog = get_node("/root/Main_Menu/Dialog")
+	dialog.append_text("My chest is hurting help me [rainbow] player [/rainbow]!!!!!!!!!!!!",30)
+	dialog.connect("box_hidden", self, "_on_break_ended")
 
 func _on_Heart_Area_mouse_entered():
 	$Heart/AnimationPlayer.play("Showing")
@@ -32,6 +32,10 @@ func _transition():
 func _on_Heart_Area_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed:
 		_transition()
+
+func _on_break_ended():
+	$Heart_Area/CollisionShape2D.disabled = false
+	print("$Heart_Area/CollisionShape2D.disabled")
 
 func _on_Tween_tween_all_completed():
 	get_tree().change_scene_to(heart_stage_scene)

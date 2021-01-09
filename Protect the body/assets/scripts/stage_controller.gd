@@ -95,10 +95,13 @@ func _ready():
 	# warning-ignore:return_value_discarded
 	$Body.connect("pointer_on_body", self, "_pointer_on_body")
 	
-	self.add_child(hp_box)
-	self.add_child(points_box)
-	self.add_child(powerup_text)
-	self.add_child(combo)
+	### HUD as CanvasLayer's child
+	$CanvasLayer.add_child(hp_box)
+	$CanvasLayer.add_child(points_box)
+	$CanvasLayer.add_child(powerup_text)
+	$CanvasLayer.add_child(combo)
+	
+	
 	self.add_child(powerups_manager)
 	self.add_child(cur_wave)
 	
@@ -153,14 +156,14 @@ func on_PowerUp_collected(powerup):
 		1:
 			pointer.get_node("Pointer").scale += Vector2(0.2, 0.2)
 			pointer.get_node("Pointer").position.y -= 16
-			$PowerUp_Text/Label.text = "GROW UP"
+			$CanvasLayer/PowerUp_Text/Label.text = "GROW UP"
 		2:
 			$Body.lifes = $Body.max_lifes
-			$HP._setup($Body)
-			$PowerUp_Text/Label.text = "RESTORE"
+			$CanvasLayer/HP._setup($Body)
+			$CanvasLayer/PowerUp_Text/Label.text = "RESTORE"
 		3:
 			$Body.clean(false)
-			$PowerUp_Text/Label.text = "CLEAN UP"
+			$CanvasLayer/PowerUp_Text/Label.text = "CLEAN UP"
 		4:
 			if self.has_node("Shield"):
 				$Shield.call_deferred("free")
@@ -168,12 +171,12 @@ func on_PowerUp_collected(powerup):
 			shield.set_name("Shield")
 			shield.set_position($Body.position)
 			self.add_child(shield)
-			$PowerUp_Text/Label.text = "SHIELD"
+			$CanvasLayer/PowerUp_Text/Label.text = "SHIELD"
 		5:
 			add_child(fruit_ninja_trail_scene.instance())
 			$Body.ninja()
-			$PowerUp_Text/Label.text = "NINJA"
-	$PowerUp_Text/AnimationPlayer.play("show_powerup")
+			$CanvasLayer/PowerUp_Text/Label.text = "NINJA"
+	$CanvasLayer/PowerUp_Text/AnimationPlayer.play("show_powerup")
 	
 	for i in $Pup_manager.get_children():
 		if i.is_in_group("powerupend"):
@@ -196,16 +199,16 @@ func on_PowerUp_collected(powerup):
 				$Pup_manager._start()
 
 func on_Enemy_die():
-	$Points_Box._update_points(100 * ($Combo.counter + 1))
-	$Combo._update_mult()
+	$CanvasLayer/Points_Box._update_points(100 * ($CanvasLayer/Combo.counter + 1))
+	$CanvasLayer/Combo._update_mult()
 	get_node(waves_name[0])._update()
 
 func _on_damage_taken():
-	$HP._on_damage()
-	$Combo._reset_mult()
+	$CanvasLayer/HP._on_damage()
+	$CanvasLayer/Combo._reset_mult()
 
 func _pointer_on_body():
-	$Combo._reset_mult()
+	$CanvasLayer/Combo._reset_mult()
 
 func _on_pointer_death():
 	get_tree().paused = true

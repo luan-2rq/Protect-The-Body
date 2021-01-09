@@ -14,9 +14,6 @@ func _ready():
 	$Enemy4_spawn.connect("timeout", self, "_on_Enemy4_spawn_timeout")
 	self._change(4)
 	total_enem = enemy1_init + enemy2_init + enemy4_init
-	
-	self.get_parent().get_node("HP").raise()
-	self.get_parent().get_node("Combo").raise()
 
 func _physics_process(delta):
 	pos += speed * delta

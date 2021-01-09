@@ -96,6 +96,8 @@ combo_scene = ExtResource( 18 )
 pointer_scene = ExtResource( 1 )
 fruit_ninja_trail_scene = ExtResource( 20 )
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
 [node name="bg-heart-heartless" type="Sprite" parent="."]
 position = Vector2( 511.375, 357.659 )
 scale = Vector2( 2.83454, 2.83454 )

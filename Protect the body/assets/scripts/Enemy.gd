@@ -99,7 +99,13 @@ func die(mult = 1):
 	$AnimationPlayer.play("die")
 	points_mult = mult
 	var points = preload("res://assets/HUD/Points/Point animation.tscn").instance()
+	var explosion = preload("res://assets/scenes/Explosion.tscn").instance()
+	var particle_color = explosion.get_node("Particles2D").get_process_material().get_color_ramp().get_gradient()
+	#for i in particle_color.get_point_count():
+	#	print(particle_color.get_color(i))
+	#particle_color.set_color(1,"green")
 	add_child(points)
+	add_child(explosion)
 	points.get_node("AnimationPlayer").connect("animation_finished", self, "_on_Points_Animation_finished")
 	points.get_node("AnimationPlayer").play("IDLE")
 	

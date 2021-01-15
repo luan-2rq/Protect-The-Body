@@ -68,6 +68,7 @@ func shoot():
 	pointer.rotation = pointer.rotation + PI
 	
 	$Pointer/AnimatedSprite.play("inJump")
+	$Pointer/Particles2D.emitting = true
 
 
 func respawn():
@@ -108,6 +109,7 @@ func die():
 	pass
 
 func get_current_body():
+	$Pointer/Particles2D.emitting = false
 	for i in range(raycasts.size()):
 		if raycasts[i].get_collider():
 			return  raycasts[i].get_collider()

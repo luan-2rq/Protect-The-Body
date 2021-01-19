@@ -190,7 +190,7 @@ pitch_scale = 0.7
 scale = Vector2( 2.5, 2.5 )
 frames = SubResource( 25 )
 animation = "ninja"
-frame = 4
+frame = 1
 playing = true
 
 [node name="Timer" type="Timer" parent="Pointer"]

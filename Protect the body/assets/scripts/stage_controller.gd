@@ -154,8 +154,8 @@ func on_Enemy_7_created_enemy(sun):
 func on_PowerUp_collected(powerup):
 	match powerup:
 		1:
-			pointer.get_node("Pointer").scale += Vector2(0.2, 0.2)
-			pointer.get_node("Pointer").position.y -= 16
+			pointer.get_node("Pointer/AnimatedSprite").scale += Vector2(0.2, 0.2)
+			pointer.get_node("Pointer/AnimatedSprite").position.y -= 0.2*pointer.get_node("Pointer/AnimatedSprite").position.y
 			$CanvasLayer/PowerUp_Text/Label.text = "GROW UP"
 		2:
 			$Body.lifes = $Body.max_lifes

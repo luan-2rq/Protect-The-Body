@@ -143,6 +143,7 @@ flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
+scale = 1.8
 color_ramp = SubResource( 27 )
 
 [node name="Root" type="Node2D"]
@@ -190,7 +191,7 @@ pitch_scale = 0.7
 scale = Vector2( 2.5, 2.5 )
 frames = SubResource( 25 )
 animation = "ninja"
-frame = 1
+frame = 4
 playing = true
 
 [node name="Timer" type="Timer" parent="Pointer"]

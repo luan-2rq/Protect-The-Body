@@ -27,17 +27,17 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Enemy",
 "language": "GDScript",
-"path": "res://assets/scripts/Enemy.gd"
+"path": "res://assets/Classes/Enemy.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "PowerUp",
 "language": "GDScript",
-"path": "res://assets/scripts/Base_PowerUp.gd"
+"path": "res://assets/Classes/Base_PowerUp.gd"
 }, {
 "base": "Node2D",
 "class": "Wave",
 "language": "GDScript",
-"path": "res://assets/scripts/ClassWave.gd"
+"path": "res://assets/Classes/ClassWave.gd"
 } ]
 _global_script_class_icons={
 "BlockingDialogBox": "",

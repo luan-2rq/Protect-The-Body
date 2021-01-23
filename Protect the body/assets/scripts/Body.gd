@@ -28,12 +28,15 @@ func clean(damage : bool):
 	add_child(canvas)
 	
 	### Dealing with enemy that will die
-	var enemies   : Array
+	var enemies : Array
 	
 	enemies = get_tree().get_nodes_in_group("enemy")
+	
 	for enemy in enemies:
 		if damage and enemy.is_in_group("enemy_hit"):
 			$CanvasLayer/AnimationPlayer.play("Pulse")
+			enemy.die()
+		if !damage and enemy.inside_window:
 			enemy.die()
 		else:
 			$CanvasLayer/AnimationPlayer.play("Clean")
@@ -63,3 +66,12 @@ func _on_Timer_timeout():
 		x.call_deferred("free")
 	for x in get_tree().get_nodes_in_group("enemy"):
 		x.set_deferred("fruit_ninja_power_up", false)
+
+### Deal with enemies inside players' pov
+func _on_windowArea_body_entered(body):
+	if body.is_in_group("enemy"):
+		body.inside_window = true
+	
+func _on_windowArea_body_exited(body):
+	if body.is_in_group("enemy"):
+		body.inside_window = false

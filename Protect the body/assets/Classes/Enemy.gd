@@ -19,6 +19,7 @@ var amp
 var t = 0
 var theta = 0
 var points_mult
+var inside_window : bool
 
 signal die
 

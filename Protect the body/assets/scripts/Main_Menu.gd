@@ -35,7 +35,6 @@ func _on_Heart_Area_input_event(viewport, event, shape_idx):
 
 func _on_break_ended():
 	$Heart_Area/CollisionShape2D.disabled = false
-	print("$Heart_Area/CollisionShape2D.disabled")
 
 func _on_Tween_tween_all_completed():
 	get_tree().change_scene_to(heart_stage_scene)

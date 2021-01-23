@@ -68,7 +68,6 @@ func shoot():
 	pointer.rotation = pointer.rotation + PI
 	
 	$Pointer/AnimatedSprite.play("inJump")
-	print(self.rotation*180/PI)
 	$Pointer/Particles2D.process_material.set_param(ParticlesMaterial.PARAM_ANGLE,-self.rotation*180/PI)
 	$Pointer/Particles2D.emitting = true
 

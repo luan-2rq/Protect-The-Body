@@ -1,9 +1,10 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://assets/scripts/Base_PowerUp.gd" type="Script" id=1]
+[ext_resource path="res://assets/Classes/Base_PowerUp.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/PowerUp-Life.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/circleRegen.png" type="Texture" id=3]
 [ext_resource path="res://assets/scenes/Power_Up/powerup_anim.tres" type="Animation" id=4]
+
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.849558, 1 )

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/PowerUp-Shield.png-6a50b099d8c5fe449f89c3a55190c831.stex"
+path="res://.import/PowerUpRegen.png-359d40850bfb2f53c3c87fc7cf22b4dc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/PowerUp-Shield.png"
-dest_files=[ "res://.import/PowerUp-Shield.png-6a50b099d8c5fe449f89c3a55190c831.stex" ]
+source_file="res://assets/sprites/PowerUpRegen.png"
+dest_files=[ "res://.import/PowerUpRegen.png-359d40850bfb2f53c3c87fc7cf22b4dc.stex" ]
 
 [params]
 

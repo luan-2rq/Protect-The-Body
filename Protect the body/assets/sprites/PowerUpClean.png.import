@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/circleClean.png-9a378bb2c6fa2b67b3e47c30628f588d.stex"
+path="res://.import/PowerUpClean.png-00397ad609642fac78cce5c8d486f92b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/circleClean.png"
-dest_files=[ "res://.import/circleClean.png-9a378bb2c6fa2b67b3e47c30628f588d.stex" ]
+source_file="res://assets/sprites/PowerUpClean.png"
+dest_files=[ "res://.import/PowerUpClean.png-00397ad609642fac78cce5c8d486f92b.stex" ]
 
 [params]
 

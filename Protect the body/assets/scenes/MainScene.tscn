@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://assets/scenes/pointer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/organHeart.png" type="Texture" id=2]
@@ -6,22 +6,17 @@
 [ext_resource path="res://assets/scripts/stage_controller.gd" type="Script" id=4]
 [ext_resource path="res://assets/scenes/Enemy_4.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/scenes/CanvasCleanWave.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/scenes/Shield.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/audio/músicas/Cardiac-Arrest.ogg" type="AudioStream" id=8]
 [ext_resource path="res://assets/scenes/Enemy_1.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/sprites/bg-heart-heartless.jpg" type="Texture" id=10]
 [ext_resource path="res://assets/sprites/circleHeart.png" type="Texture" id=11]
 [ext_resource path="res://assets/scripts/Body.gd" type="Script" id=12]
-[ext_resource path="res://assets/scenes/Power_Up/PowerUp-Clean.tscn" type="PackedScene" id=13]
-[ext_resource path="res://assets/scenes/Power_Up/PowerUp-Life.tscn" type="PackedScene" id=14]
-[ext_resource path="res://assets/scenes/Power_Up/Shield/PowerUp-Shield.tscn" type="PackedScene" id=15]
 [ext_resource path="res://assets/HUD/Points/Points.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/HUD/Life/Life.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/HUD/Combo/Combo.tscn" type="PackedScene" id=18]
 [ext_resource path="res://assets/HUD/PowerUp_Text/PowerUpText.tscn" type="PackedScene" id=19]
 [ext_resource path="res://assets/scenes/Trail.tscn" type="PackedScene" id=20]
-[ext_resource path="res://assets/scenes/Power_Up/PowerUp-FruitNinja.tscn" type="PackedScene" id=21]
-[ext_resource path="res://assets/scenes/Power_Up/PowerUp-Grow.tscn" type="PackedScene" id=22]
-[ext_resource path="res://assets/scenes/Power_Up/Shield/Shield.tscn" type="PackedScene" id=23]
 [ext_resource path="res://assets/scenes/Waves/Wave1.tscn" type="PackedScene" id=24]
 [ext_resource path="res://assets/scenes/PowerUp_Manager.tscn" type="PackedScene" id=25]
 
@@ -86,12 +81,7 @@ powerups_scene = ExtResource( 25 )
 enemy1_scene = ExtResource( 9 )
 enemy2_scene = ExtResource( 3 )
 enemy4_scene = ExtResource( 5 )
-powerup1_scene = ExtResource( 22 )
-powerup2_scene = ExtResource( 13 )
-powerup3_scene = ExtResource( 14 )
-powerup4_scene = ExtResource( 15 )
-shield_scene = ExtResource( 23 )
-powerup5_scene = ExtResource( 21 )
+shield_scene = ExtResource( 7 )
 hp_scene = ExtResource( 17 )
 points_scene = ExtResource( 16 )
 poweruptext_scene = ExtResource( 19 )

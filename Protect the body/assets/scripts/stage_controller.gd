@@ -2,22 +2,15 @@ extends Node2D
 
 export(PackedScene)var wave1_scene
 export(PackedScene)var powerups_scene
-
 export(PackedScene)var enemy1_scene
 export(PackedScene)var enemy2_scene
 export(PackedScene)var enemy4_scene
-export(PackedScene)var powerup1_scene
-export(PackedScene)var powerup2_scene
-export(PackedScene)var powerup3_scene
-export(PackedScene)var powerup4_scene
 export(PackedScene)var shield_scene
-export(PackedScene)var powerup5_scene
 export(PackedScene)var hp_scene
 export(PackedScene)var points_scene
 export(PackedScene)var poweruptext_scene
 export(PackedScene)var combo_scene
 var enemy_scene
-var powerup_scene
 
 export(PackedScene)var pointer_scene
 var pointer
@@ -151,20 +144,17 @@ func on_Enemy_7_created_enemy(sun):
 #	powerup_scene.connect("collected", self, "on_PowerUp_collected")
 #	add_child(powerup_scene)
 
-func on_PowerUp_collected(powerup):
-	match powerup:
-		1:
+func on_PowerUp_collected(powerup_num):
+	match powerup_num:
+		0:
 			pointer.get_node("Pointer/AnimatedSprite").scale += Vector2(0.2, 0.2)
 			pointer.get_node("Pointer/AnimatedSprite").position.y -= 0.2*pointer.get_node("Pointer/AnimatedSprite").position.y
 			$CanvasLayer/PowerUp_Text/Label.text = "GROW UP"
-		2:
+		1:
 			$Body.lifes = $Body.max_lifes
 			$CanvasLayer/HP._setup($Body)
 			$CanvasLayer/PowerUp_Text/Label.text = "RESTORE"
-		3:
-			$Body.clean(false)
-			$CanvasLayer/PowerUp_Text/Label.text = "CLEAN UP"
-		4:
+		2:
 			if self.has_node("Shield"):
 				$Shield.call_deferred("free")
 			var shield = shield_scene.instance()
@@ -172,10 +162,14 @@ func on_PowerUp_collected(powerup):
 			shield.set_position($Body.position)
 			self.add_child(shield)
 			$CanvasLayer/PowerUp_Text/Label.text = "SHIELD"
-		5:
+		3:
 			add_child(fruit_ninja_trail_scene.instance())
 			$Body.ninja()
 			$CanvasLayer/PowerUp_Text/Label.text = "NINJA"
+		4:
+			$Body.clean(false)
+			$CanvasLayer/PowerUp_Text/Label.text = "CLEAN UP"
+		
 	$CanvasLayer/PowerUp_Text/AnimationPlayer.play("show_powerup")
 	
 	for i in $Pup_manager.get_children():

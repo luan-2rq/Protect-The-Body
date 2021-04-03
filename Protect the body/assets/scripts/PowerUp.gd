@@ -1,17 +1,17 @@
 extends KinematicBody2D
 class_name PowerUp
 
-var sprite_blue = preload("res://assets/sprites/PowerUpShield.png")
 var sprite_red = preload("res://assets/sprites/PowerUpGrowUp.png")
-var sprite_yellow = preload("res://assets/sprites/PowerUpNinja.png")
 var sprite_green = preload("res://assets/sprites/PowerUpRegen.png")
+var sprite_blue = preload("res://assets/sprites/PowerUpShield.png")
+var sprite_yellow = preload("res://assets/sprites/PowerUpNinja.png")
 var sprite_purple = preload("res://assets/sprites/PowerUpClean.png")
 var setup_color
 var rng = RandomNumberGenerator.new()
 var plain : int
 var pos : Vector2
 var resolution : Vector2 = OS.get_window_size()
-onready var colors : Array = [Color8(123, 107, 255), Color8(85, 227, 68), Color8(241, 233, 85), Color8(214, 4, 4), Color8(152, 51, 136)]
+onready var colors : Array = [Color8(214, 4, 4), Color8(85, 227, 68), Color8(123, 107, 255), Color8(241, 233, 85), Color8(152, 51, 136)]
 onready var sprite_main : Sprite = $Sprite
 onready var sprite_circle : Sprite = $Circle
 onready var particles : Particles2D = $Particles2D
@@ -51,13 +51,13 @@ func _ready():
 	particles.modulate = colors[setup_color]
 	match setup_color:
 		0:
-			sprite_main.set_texture(sprite_blue)
+			sprite_main.set_texture(sprite_red)
 		1:
 			sprite_main.set_texture(sprite_green)
 		2:
-			sprite_main.set_texture(sprite_yellow)
+			sprite_main.set_texture(sprite_blue)
 		3:
-			sprite_main.set_texture(sprite_red)
+			sprite_main.set_texture(sprite_yellow)
 		4:
 			sprite_main.set_texture(sprite_purple)
 #	$Timer.connect("timeout", self, "on_Timer_timeout")

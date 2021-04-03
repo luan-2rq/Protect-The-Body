@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/circleRegen.png-551ab6c9cc503af94f357d755c6c1e2d.stex"
+path="res://.import/PowerUpNinja.png-19fbb1773a0bf1b3fd837cf6b26f4fa5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/circleRegen.png"
-dest_files=[ "res://.import/circleRegen.png-551ab6c9cc503af94f357d755c6c1e2d.stex" ]
+source_file="res://assets/sprites/PowerUpNinja.png"
+dest_files=[ "res://.import/PowerUpNinja.png-19fbb1773a0bf1b3fd837cf6b26f4fa5.stex" ]
 
 [params]
 

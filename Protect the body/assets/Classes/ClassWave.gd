@@ -60,12 +60,12 @@ func _process(_delta):
 func _update():
 	total_dead += 1
 
-func _change(wave_num : int):
+func _change(wave_number : int):
 	var wave_change = wave_change_scene.instance()
 	
 	wave_change.set_name("Change")
 	wave_change.connect("start", self, "_start")
-	wave_change.get_node("Box").get_node("Wave_Title").text = "wave " + str(wave_num)
+	wave_change.get_node("Box").get_node("Wave_Title").text = "wave " + str(wave_number)
 	
 	self.add_child(wave_change)
 	

@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "PowerUp",
 "language": "GDScript",
-"path": "res://assets/Classes/Base_PowerUp.gd"
+"path": "res://assets/scripts/PowerUp.gd"
 }, {
 "base": "Node2D",
 "class": "Wave",
